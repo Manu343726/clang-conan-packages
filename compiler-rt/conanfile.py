@@ -46,7 +46,6 @@ class CompilerRTConan(ConanFile):
     name = "compiler-rt"
     version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
     generators = "cmake"
-    requires = ("llvm/3.8.0@Manu343726/testing", )
     url = "http://github.com/Manu343726/compiler-rt-conan"
     license = "BSD"
     settings = "os", "compiler", "build_type", "arch"
@@ -63,6 +62,10 @@ class CompilerRTConan(ConanFile):
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.shared
+
+    def requirements(self):
+        self._package_reference = "{}@{}/{}".format(self.version, self.user, self.channel)
+        self.requires("llvm/" + self._package_reference)
 
     def source(self):
         download_extract_llvm_component("compiler-rt", CompilerRTConan.version,

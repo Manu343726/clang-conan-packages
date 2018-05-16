@@ -48,13 +48,11 @@ class ClangConan(ConanFile):
     name = "clang"
     version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
     generators = "cmake"
-    requires = ("llvm/3.8.0@Manu343726/testing",
-                "compiler-rt/3.8.0@Manu343726/testing")
-    url = "http://github.com/Manu343726/clang-conan"
+    url = "http://gitlab.com/Manu343726/clang-conan"
     license = "BSD"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "extra_tools": [True, False]}
-    default_options = "shared=True"
+    default_options = "shared=True", "extra_tools=True"
 
     def configure(self):
         del self.settings.compiler.libcxx
@@ -65,8 +63,14 @@ class ClangConan(ConanFile):
             self.options["libcxx"].shared = self.options.shared
 
     def requirements(self):
+        self._package_reference = "{}@{}/{}".format(self.version, self.user, self.channel)
+
+        self.requires("llvm/" + self._package_reference)
+        self.requires("compiler-rt/" + self._package_reference)
+
         if self.settings.compiler != "Visual Studio":
-            self.requires("libcxx/3.8.0@Manu343726/testing")
+            self.requires("libcxx/" + self._package_reference)
+
 
     def config_options(self):
         if self.settings.os == "Windows":

@@ -5,18 +5,16 @@ import yaml, sys
 def eprint(*args, **kwargs):
         print(*args, file=sys.stderr, **kwargs)
 
-def generate_gitlab_package(gitlab_ci, package, compiler, version, user, channel):
-    job = "{}-{}-{}".format(package, version, compiler)
-    build_job = "build-" + job
-    test_job = "test-" + job
-    deploy_job = "deploy-" + job
+def generate_gitlab_package(gitlab_ci, packages, compiler, version, user, channel):
+    job = "{}_{}_{}".format('+'.join(template["packages"]), version, compiler)
+    build_job = "build_" + job
+    test_job = "test_" + job
+    deploy_job = "deploy_" + job
 
     gitlab_ci[build_job] = {
         "tags": ["linux", "docker"],
         "image": "lasote/conan" + compiler,
-        "script": [
-            "CONAN_VERSION_OVERRIDE={} conan create {} {}/{}".format(version, package, user, channel)
-        ]
+        "script": ["CONAN_VERSION_OVERRIDE={} conan create {} {}/{}".format(version, package, user, channel) for package in packages]
     }
 
 
@@ -28,16 +26,11 @@ def generate_gitlab(template):
         "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
     ]
 
-    for package in template["packages"]:
-        for compiler in template["compilers"]:
-            for version in template["versions"]:
-                generate_gitlab_package(gitlab_ci, package, compiler, version, template["channel"]["user"], template["channel"]["channel"])
+    for compiler in template["compilers"]:
+        for version in template["versions"]:
+            generate_gitlab_package(gitlab_ci, template["packages"], compiler, version, template["channel"]["user"], template["channel"]["channel"])
 
-<<<<<<< a578d0057646b9a2a668bea4f8da71da39097dd6
-    yaml.dump(gitlab_ci, open('.gitlab.ci', 'w'), default_flow_style = False)
-=======
     yaml.dump(gitlab_ci, open('.gitlab-ci.yml', 'w'), default_flow_style = False)
->>>>>>> all llvm packages moved to the same repo. CI script generator
 
 with open('ci_template.yml') as template_file:
     try:
