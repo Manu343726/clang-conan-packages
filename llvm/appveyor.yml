@@ -1,0 +1,30 @@
+build: false
+
+environment:
+    PYTHON: "C:\\Python27"
+    PYTHON_VERSION: "2.7.8"
+    PYTHON_ARCH: "32"
+    
+    CONAN_UPLOAD: 1
+    CONAN_REFERENCE: "llvm/3.8.0"
+    CONAN_USERNAME: "smspillaz"
+    CONAN_CHANNEL: "ci"
+    CONAN_TOTAL_PAGES: 4
+    CONAN_PASSWORD:
+      secure: 5nLxRf+tMibvD7MIK0PDWQ==
+    
+    matrix:
+        - CONAN_CURRENT_PAGE: 1
+        - CONAN_CURRENT_PAGE: 2
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - pip.exe install https://github.com/smspillaz/conan/archive/fix-206.zip
+  - pip.exe install conan_package_tools # It install conan too
+  - conan user # It creates the conan data directory
+
+test_script:
+  - python build.py

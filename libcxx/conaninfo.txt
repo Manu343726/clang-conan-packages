@@ -1,0 +1,27 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.version=4.8
+    os=Linux
+
+[requires]
+    llvm/3.Y.Z
+
+[options]
+    shared=True
+
+[full_settings]
+    arch=x86_64
+    build_type=Release
+    compiler=gcc
+    compiler.libcxx=libstdc++
+    compiler.version=4.8
+    os=Linux
+
+[full_requires]
+    llvm/3.8.0@smspillaz/stable:a79ecbb5554da8510d2c9d7856daeb24de6be0d9
+
+[full_options]
+    shared=True
+    llvm:shared=True

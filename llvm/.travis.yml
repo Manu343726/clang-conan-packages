@@ -1,0 +1,45 @@
+os: linux
+services:
+- docker
+sudo: required
+language: python
+env:
+  global:
+  - CONAN_UPLOAD=1
+  - CONAN_REFERENCE="llvm/3.8.0"
+  - CONAN_USERNAME="smspillaz"
+  - CONAN_CHANNEL="ci"
+  - CONAN_TOTAL_PAGES=2
+  - CONAN_PIP_PACKAGE="https://github.com/smspillaz/conan/archive/fix-206.zip"
+  - secure: mkwf18IQgEYK62hwEMx44GW88zmQAAswXex+jT7yadKFKG8aJGI25bDjb1AwKqZ8px35UievjwjtwtwGBs1Y4GrvTP7kLtVNHqOmy4FocuP/h/K4EJrf45UPMkxNPSpupDJCxjttSpT8Iwi2MgEoReaeExvthKOrnrryPv2Ut7Y7lb6HsHC3q4aryebiXFRUAaYPLOxi5zMRViczmJOHG3TS85sCy5LU9zIT5aZd/fQneY2PNtge2yZCeukgcJnomk6kutuIQ9qaJx7wdMJre7cAxg2MLhTDZkMxJGe2mBWzcc2MWQaL8XZSVcMXY6URa4bn33iDts8ykqmQFKoZUq197yUteyxaP7am8T7VUU7QH09P2LfNq9IDVPFIV+RRIWsjtSrD1zm5PWdtL2LVNOjmukPhSEKAK7HVUpSINTe2sXpc4Fb2lrWNmu2FGxNfqMblj5x61qhC7TAW9u9BKNy8u+YPUkR9sMPhn0Z7GqWjXX7SpqLUZ6c1qiWnCBYO0r9+iuIrayOrWfXagXzB0pPeCSSylty09kyGa7fxutKdfBPj0AerS3cGudPdBWwERFfFRO6uHLMuqPbaTaRsm06Sg+PA21Nt2HVHaPTZ2WclgyEBDVijdox8h3rEacyqiiEjsSdc9wka1DhBUdsDJcXYzhAGA+A5HO/E7el/an0=
+  matrix:
+  - CONAN_GCC_VERSIONS=4.8 CONAN_CURRENT_PAGE=1 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=4.8 CONAN_CURRENT_PAGE=2 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=4.9 CONAN_CURRENT_PAGE=1 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=4.9 CONAN_CURRENT_PAGE=2 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=5.2 CONAN_CURRENT_PAGE=1 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=5.2 CONAN_CURRENT_PAGE=2 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=5.3 CONAN_CURRENT_PAGE=1 CONAN_USE_DOCKER=1
+  - CONAN_GCC_VERSIONS=5.3 CONAN_CURRENT_PAGE=2 CONAN_USE_DOCKER=1
+matrix:
+  include:
+  - os: osx
+    osx_image: xcode7.1
+    language: generic
+    env: CONAN_CURRENT_PAGE=1
+  - os: osx
+    osx_image: xcode7.1
+    language: generic
+    env: CONAN_CURRENT_PAGE=2
+  - os: osx
+    osx_image: xcode6.4
+    language: generic
+    env: CONAN_CURRENT_PAGE=1
+  - os: osx
+    osx_image: xcode6.4
+    language: generic
+    env: CONAN_CURRENT_PAGE=2
+install:
+- "./.travis/install.sh"
+script:
+- "./.travis/run.sh"

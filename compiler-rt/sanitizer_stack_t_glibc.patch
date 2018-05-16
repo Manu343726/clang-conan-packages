@@ -1,0 +1,78 @@
+diff --git a/lib/sanitizer_common/sanitizer_linux.cc b/lib/sanitizer_common/sanitizer_linux.cc
+index 707996633..6a6138be5 100644
+--- a/lib/sanitizer_common/sanitizer_linux.cc
++++ b/lib/sanitizer_common/sanitizer_linux.cc
+@@ -565,8 +565,8 @@ uptr internal_prctl(int option, uptr arg2, uptr arg3, uptr arg4, uptr arg5) {
+ }
+ #endif
+ 
+-uptr internal_sigaltstack(const struct sigaltstack *ss,
+-                         struct sigaltstack *oss) {
++uptr internal_sigaltstack(const stack_t*ss,
++                         stack_t *oss) {
+   return internal_syscall(SYSCALL(sigaltstack), (uptr)ss, (uptr)oss);
+ }
+ 
+diff --git a/lib/sanitizer_common/sanitizer_linux.h b/lib/sanitizer_common/sanitizer_linux.h
+index 77bfbd156..68b085c8a 100644
+--- a/lib/sanitizer_common/sanitizer_linux.h
++++ b/lib/sanitizer_common/sanitizer_linux.h
+@@ -22,6 +22,21 @@
+ 
+ struct link_map;  // Opaque type returned by dlopen().
+ struct sigaltstack;
++struct __res_state;
++
++#ifndef __stack_t_defined
++#define __stack_t_defined 1
++#define __need_size_t
++#include <stddef.h>
++ /* Structure describing a signal stack.  */
++ typedef struct
++ {
++   void *ss_sp;
++   int ss_flags;
++   size_t ss_size;
++ } stack_t;
++
++#endif // __stack_t_defined
+ 
+ namespace __sanitizer {
+ // Dirent structure for getdents(). Note that this structure is different from
+@@ -30,8 +45,8 @@ struct linux_dirent;
+ 
+ // Syscall wrappers.
+ uptr internal_getdents(fd_t fd, struct linux_dirent *dirp, unsigned int count);
+-uptr internal_sigaltstack(const struct sigaltstack* ss,
+-                          struct sigaltstack* oss);
++uptr internal_sigaltstack(const stack_t* ss,
++                          stack_t* oss);
+ uptr internal_sigprocmask(int how, __sanitizer_sigset_t *set,
+     __sanitizer_sigset_t *oldset);
+ void internal_sigfillset(__sanitizer_sigset_t *set);
+diff --git a/lib/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc b/lib/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc
+index d1e2f6acf..2df7be582 100644
+--- a/lib/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc
++++ b/lib/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc
+@@ -272,7 +272,7 @@ static int TracerThread(void* argument) {
+ 
+   // Alternate stack for signal handling.
+   InternalScopedBuffer<char> handler_stack_memory(kHandlerStackSize);
+-  struct sigaltstack handler_stack;
++  stack_t handler_stack;
+   internal_memset(&handler_stack, 0, sizeof(handler_stack));
+   handler_stack.ss_sp = handler_stack_memory.data();
+   handler_stack.ss_size = kHandlerStackSize;
+diff --git a/lib/tsan/rtl/tsan_platform_linux.cc b/lib/tsan/rtl/tsan_platform_linux.cc
+index 660256118..98a5b135c 100644
+--- a/lib/tsan/rtl/tsan_platform_linux.cc
++++ b/lib/tsan/rtl/tsan_platform_linux.cc
+@@ -311,7 +311,7 @@ bool IsGlobalVar(uptr addr) {
+ int ExtractResolvFDs(void *state, int *fds, int nfd) {
+ #if SANITIZER_LINUX && !SANITIZER_ANDROID
+   int cnt = 0;
+-  __res_state *statp = (__res_state*)state;
++  struct __res_state *statp = (struct __res_state*)state;
+   for (int i = 0; i < MAXNS && cnt < nfd; i++) {
+     if (statp->_u._ext.nsaddrs[i] && statp->_u._ext.nssocks[i] != -1)
+       fds[cnt++] = statp->_u._ext.nssocks[i];
