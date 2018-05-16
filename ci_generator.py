@@ -33,7 +33,11 @@ def generate_gitlab(template):
             for version in template["versions"]:
                 generate_gitlab_package(gitlab_ci, package, compiler, version, template["channel"]["user"], template["channel"]["channel"])
 
+<<<<<<< a578d0057646b9a2a668bea4f8da71da39097dd6
     yaml.dump(gitlab_ci, open('.gitlab.ci', 'w'), default_flow_style = False)
+=======
+    yaml.dump(gitlab_ci, open('.gitlab-ci.yml', 'w'), default_flow_style = False)
+>>>>>>> all llvm packages moved to the same repo. CI script generator
 
 with open('ci_template.yml') as template_file:
     try:
