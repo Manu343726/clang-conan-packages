@@ -7,6 +7,16 @@ packages:
   - libcxx
   - clang
 
+options:
+  shared:
+    - True
+    - False
+
+settings:
+  build_type:
+    - Debug
+    - Release
+
 channel:
   user: Manu343726
   channel: testing
