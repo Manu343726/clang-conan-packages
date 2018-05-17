@@ -14,7 +14,7 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
     gitlab_ci[build_job] = {
         "tags": ["linux", "docker"],
         "image": "lasote/conan" + compiler,
-        "script": ["pushd {package} && CONAN_VERSION_OVERRIDE={version} CONAN_USERNAME={user} CONAN_REFERENCE={package}/{version} CONAN_CHANNEL={channel} python3 ../build.py && popd".format(package=package, user=user, version=version, channel=channel) for package in packages] +
+        "script": ["pushd {package} && CONAN_VERSION_OVERRIDE={version} CONAN_USERNAME={user} CONAN_REFERENCE={package}/{version} CONAN_CHANNEL={channel} python ../build.py && popd".format(package=package, user=user, version=version, channel=channel) for package in packages] +
                   ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
     }
 

@@ -6,13 +6,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38:
   image: lasote/conanclang38
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -24,13 +24,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39:
   image: lasote/conanclang39
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -42,13 +42,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40:
   image: lasote/conanclang40
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -60,13 +60,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50:
   image: lasote/conanclang50
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -78,13 +78,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60:
   image: lasote/conanclang60
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -96,13 +96,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5:
   image: lasote/conangcc5
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -114,13 +114,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6:
   image: lasote/conangcc6
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -132,13 +132,13 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7:
   image: lasote/conangcc7
   script:
   - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
-    CONAN_CHANNEL=testing python3 ../build.py && popd
+    CONAN_CHANNEL=testing python ../build.py && popd
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
