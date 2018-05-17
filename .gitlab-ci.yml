@@ -1,243 +1,148 @@
 before_script:
+- pip install conan_package_tools --user
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
 - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38:
   image: lasote/conanclang38
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39:
   image: lasote/conanclang39
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40:
   image: lasote/conanclang40
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50:
   image: lasote/conanclang50
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60:
   image: lasote/conanclang60
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5:
   image: lasote/conangcc5
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6:
   image: lasote/conangcc6
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
 build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7:
   image: lasote/conangcc7
   script:
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_clang38:
-  image: lasote/conanclang38
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_clang39:
-  image: lasote/conanclang39
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_clang40:
-  image: lasote/conanclang40
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_clang50:
-  image: lasote/conanclang50
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_clang60:
-  image: lasote/conanclang60
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_gcc5:
-  image: lasote/conangcc5
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_gcc6:
-  image: lasote/conangcc6
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.9.0_gcc7:
-  image: lasote/conangcc7
-  script:
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.9.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_clang38:
-  image: lasote/conanclang38
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_clang39:
-  image: lasote/conanclang39
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_clang40:
-  image: lasote/conanclang40
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_clang50:
-  image: lasote/conanclang50
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_clang60:
-  image: lasote/conanclang60
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_gcc5:
-  image: lasote/conangcc5
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_gcc6:
-  image: lasote/conangcc6
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_4.0.0_gcc7:
-  image: lasote/conangcc7
-  script:
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create compiler-rt Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=4.0.0 conan create clang Manu343726/testing
+  - pushd llvm && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=llvm/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd compiler-rt && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=compiler-rt/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd libcxx && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=libcxx/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - pushd clang && CONAN_VERSION_OVERRIDE=3.8.0 CONAN_USERNAME=Manu343726 CONAN_REFERENCE=clang/3.8.0
+    CONAN_CHANNEL=testing python3 ../build.py && popd
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
   tags:
   - linux
   - docker
