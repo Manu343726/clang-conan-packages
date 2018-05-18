@@ -5,18 +5,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=False:
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -28,15 +29,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=True:
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -48,18 +53,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=Fals
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -71,15 +77,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=True
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -91,18 +101,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=False:
   image: lasote/conanclang39
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -114,15 +125,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=True:
   image: lasote/conanclang39
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -134,18 +149,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=Fals
   image: lasote/conanclang39
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -157,15 +173,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=True
   image: lasote/conanclang39
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -177,18 +197,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=False:
   image: lasote/conanclang40
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -200,15 +221,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=True:
   image: lasote/conanclang40
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -220,18 +245,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=Fals
   image: lasote/conanclang40
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -243,15 +269,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=True
   image: lasote/conanclang40
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -263,18 +293,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=False:
   image: lasote/conanclang50
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -286,15 +317,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=True:
   image: lasote/conanclang50
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -306,18 +341,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=Fals
   image: lasote/conanclang50
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -329,15 +365,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=True
   image: lasote/conanclang50
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -349,18 +389,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=False:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -372,15 +413,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=True:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -392,18 +437,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=Fals
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -415,15 +461,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=True
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -435,18 +485,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -458,15 +509,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=True:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -478,18 +533,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -501,15 +557,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=True:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -521,18 +581,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=False:
   image: lasote/conangcc6
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -544,15 +605,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=True:
   image: lasote/conangcc6
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -564,18 +629,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=False:
   image: lasote/conangcc6
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -587,15 +653,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=True:
   image: lasote/conangcc6
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -607,18 +677,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -630,15 +701,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=True:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -650,18 +725,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=False -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
@@ -673,15 +749,19 @@ build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=True:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    libcxx Manu343726/testing
+  - conan remove -b -s -f "*" && CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default
+    -o llvm:shared=True -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True
+    clang Manu343726/testing
+  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
   - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
   - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all

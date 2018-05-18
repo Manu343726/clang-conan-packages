@@ -69,7 +69,8 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
         "tags": ["linux", "docker"],
         "image": "lasote/conan" + compiler,
         "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + \
-                  ["CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
+                  ["conan remove -b -s -f \"*\" && CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
+                  ["conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])] + \
                   ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
     }
 
@@ -80,7 +81,6 @@ def generate_gitlab(template):
     gitlab_ci['before_script'] = [
         "conan remote add {} {}".format(template["remote"]["name"], template["remote"]["url"]),
         "conan profile new --detect default"
-        #"conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
     ]
 
     package_matrix = input_matrix(template, ["settings", "options"])
