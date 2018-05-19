@@ -72,7 +72,7 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
         "artifacts": {"paths": ["conan_data/"]},
         "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + \
                   ["conan remove -b -s -f \"*\" && CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
-                  ["rsync -r --progress /home/conan/.conan/ conan_data/"]
+                  ["cp -r /home/conan/.conan/ conan_data/"]
     }
 
     gitlab_ci[deploy_job] = {
@@ -81,7 +81,7 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
         "stage": "deploy",
         "dependencies": [build_job],
         "script": [
-            "rsync -r --progress conan_data/ /home/conan/.conan/",
+            "cp -rf conan_data/.conan /home/conan/",
             "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
         ] + \
             ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
@@ -92,7 +92,6 @@ def generate_gitlab(template):
     gitlab_ci = {}
 
     gitlab_ci['before_script'] = [
-        "apt-get install rsync -y",
         "conan remote add {} {}".format(template["remote"]["name"], template["remote"]["url"]),
         "conan profile new --detect default"
     ]
