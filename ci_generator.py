@@ -68,10 +68,23 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
     gitlab_ci[build_job] = {
         "tags": ["linux", "docker"],
         "image": "lasote/conan" + compiler,
+        "stage": "build",
+        "artifacts": {"paths": ["conan_data/"]},
         "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + \
                   ["conan remove -b -s -f \"*\" && CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
-                  ["conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])] + \
-                  ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
+                  ["rsync -r --progress /home/conan/.conan/ conan_data/"]
+    }
+
+    gitlab_ci[deploy_job] = {
+        "tags": ["linux", "docker"],
+        "image": "lasote/conan" + compiler,
+        "stage": "deploy",
+        "dependencies": [build_job],
+        "script": [
+            "rsync -r --progress conan_data/ /home/conan/.conan/",
+            "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
+        ] + \
+            ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
     }
 
 
