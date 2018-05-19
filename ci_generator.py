@@ -92,6 +92,7 @@ def generate_gitlab(template):
     gitlab_ci = {}
 
     gitlab_ci['before_script'] = [
+        "apt-get install rsync -y",
         "conan remote add {} {}".format(template["remote"]["name"], template["remote"]["url"]),
         "conan profile new --detect default"
     ]

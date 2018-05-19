@@ -1,4 +1,5 @@
 before_script:
+- apt-get install rsync -y
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
 - conan profile new --detect default
 build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=False:
