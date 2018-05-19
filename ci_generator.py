@@ -71,7 +71,7 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
         "stage": "build",
         "artifacts": {"paths": ["conan_data/"]},
         "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + \
-                  ["conan remove -b -s -f \"*\" && CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
+                  ["CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel} && conan remove -b -s -f \"*\"".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
                   ["cp -r /home/conan/.conan/ conan_data/"]
     }
 
