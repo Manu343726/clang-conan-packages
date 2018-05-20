@@ -1,1251 +1,1881 @@
 before_script:
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
 - conan profile new --detect default
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
+- conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
+build_clang_3.8.0_clang38_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_clang38_build_type=Debug+shared=False
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Debug default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
   tags:
   - linux
   - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
+build_clang_3.8.0_clang38_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_clang38_build_type=Debug+shared=True
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Debug default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
   tags:
   - linux
   - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
+build_clang_3.8.0_clang38_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang38_build_type=Release+shared=False
+  - build_libcxx_3.8.0_clang38_build_type=Release+shared=False
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
   tags:
   - linux
   - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
+build_clang_3.8.0_clang38_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang38_build_type=Release+shared=True
+  - build_libcxx_3.8.0_clang38_build_type=Release+shared=True
   image: lasote/conanclang38
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
   tags:
   - linux
   - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang39
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang39
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang39
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang39
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang40
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang40
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang40
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang40
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang50
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang50
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang50
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang50
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang60
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang60
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang60
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conanclang60
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc5
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc5
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc5
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc5
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc6
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc6
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc6
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc6
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc7
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc7
-  script:
-  - conan profile update settings.build_type=Debug default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=False:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc7
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False llvm
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False libcxx
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
-    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
-    Manu343726/testing && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=True:
-  artifacts:
-    paths:
-    - conan_data/
-  image: lasote/conangcc7
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True llvm Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True compiler-rt
-    Manu343726/testing && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True libcxx Manu343726/testing
-    && conan remove -b -s -f "*"
-  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
-    && conan remove -b -s -f "*"
-  - cp -r /home/conan/.conan/ conan_data/
-  stage: build
-  tags:
-  - linux
-  - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=False:
+build_clang_3.8.0_clang39_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=False
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_clang39_build_type=Debug+shared=False
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang39_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_clang39_build_type=Debug+shared=True
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang39_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang39_build_type=Release+shared=False
+  - build_libcxx_3.8.0_clang39_build_type=Release+shared=False
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang39_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang39_build_type=Release+shared=True
+  - build_libcxx_3.8.0_clang39_build_type=Release+shared=True
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang40_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_clang40_build_type=Debug+shared=False
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang40_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_clang40_build_type=Debug+shared=True
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang40_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang40_build_type=Release+shared=False
+  - build_libcxx_3.8.0_clang40_build_type=Release+shared=False
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang40_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang40_build_type=Release+shared=True
+  - build_libcxx_3.8.0_clang40_build_type=Release+shared=True
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang50_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_clang50_build_type=Debug+shared=False
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang50_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_clang50_build_type=Debug+shared=True
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang50_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang50_build_type=Release+shared=False
+  - build_libcxx_3.8.0_clang50_build_type=Release+shared=False
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang50_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang50_build_type=Release+shared=True
+  - build_libcxx_3.8.0_clang50_build_type=Release+shared=True
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang60_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_clang60_build_type=Debug+shared=False
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang60_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_clang60_build_type=Debug+shared=True
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang60_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang60_build_type=Release+shared=False
+  - build_libcxx_3.8.0_clang60_build_type=Release+shared=False
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_clang60_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True
+  - build_libcxx_3.8.0_clang60_build_type=Release+shared=True
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc5_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_gcc5_build_type=Debug+shared=False
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc5_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_gcc5_build_type=Debug+shared=True
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc5_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=False
+  - build_libcxx_3.8.0_gcc5_build_type=Release+shared=False
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc5_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=True
+  - build_libcxx_3.8.0_gcc5_build_type=Release+shared=True
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc6_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_gcc6_build_type=Debug+shared=False
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc6_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_gcc6_build_type=Debug+shared=True
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc6_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=False
+  - build_libcxx_3.8.0_gcc6_build_type=Release+shared=False
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc6_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=True
+  - build_libcxx_3.8.0_gcc6_build_type=Release+shared=True
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc7_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=False
+  - build_libcxx_3.8.0_gcc7_build_type=Debug+shared=False
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc7_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=True
+  - build_libcxx_3.8.0_gcc7_build_type=Debug+shared=True
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc7_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=False
+  - build_libcxx_3.8.0_gcc7_build_type=Release+shared=False
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_3.8.0_gcc7_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=True
+  - build_libcxx_3.8.0_gcc7_build_type=Release+shared=True
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: clang
+  tags:
+  - linux
+  - docker
+build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=False
   image: lasote/conanclang38
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Debug+shared=True
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=True
   image: lasote/conanclang38
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_clang38_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=False
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=False
   image: lasote/conanclang38
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_clang38_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang38_build_type=Release+shared=True
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=True
   image: lasote/conanclang38
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=False
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=False
   image: lasote/conanclang39
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Debug+shared=True
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=True
   image: lasote/conanclang39
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_clang39_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=False
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=False
   image: lasote/conanclang39
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_clang39_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang39_build_type=Release+shared=True
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=True
   image: lasote/conanclang39
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=False
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=False
   image: lasote/conanclang40
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Debug+shared=True
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=True
   image: lasote/conanclang40
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_clang40_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=False
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=False
   image: lasote/conanclang40
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_clang40_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang40_build_type=Release+shared=True
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=True
   image: lasote/conanclang40
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=False
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=False
   image: lasote/conanclang50
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Debug+shared=True
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=True
   image: lasote/conanclang50
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_clang50_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=False
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=False
   image: lasote/conanclang50
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_clang50_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang50_build_type=Release+shared=True
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=True
   image: lasote/conanclang50
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=False
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=False
   image: lasote/conanclang60
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Debug+shared=True
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=True
   image: lasote/conanclang60
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_clang60_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=False
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=False
   image: lasote/conanclang60
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_clang60_build_type=Release+shared=True
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=True
   image: lasote/conanclang60
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=False
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=False
   image: lasote/conangcc5
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Debug+shared=True
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=True
   image: lasote/conangcc5
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=False
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=False
   image: lasote/conangcc5
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc5_build_type=Release+shared=True
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=True
   image: lasote/conangcc5
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=False
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=False
   image: lasote/conangcc6
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Debug+shared=True
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=True
   image: lasote/conangcc6
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=False
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=False
   image: lasote/conangcc6
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc6_build_type=Release+shared=True
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=True
   image: lasote/conangcc6
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=False:
+build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=False
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=False
   image: lasote/conangcc7
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=True:
+build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Debug+shared=True
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=True
   image: lasote/conangcc7
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=False:
+build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=False:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=False
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=False
   image: lasote/conangcc7
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
-deploy_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=True:
+build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=True:
   dependencies:
-  - build_llvm+compiler-rt+libcxx+clang_3.8.0_gcc7_build_type=Release+shared=True
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=True
   image: lasote/conangcc7
   script:
-  - cp -rf conan_data/.conan /home/conan/
-  - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
-  stage: deploy
+  stage: compiler-rt
   tags:
   - linux
   - docker
+build_libcxx_3.8.0_clang38_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=False
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang38_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang38_build_type=Debug+shared=True
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang38_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang38_build_type=Release+shared=False
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang38_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang38_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang38_build_type=Release+shared=True
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang39_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=False
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang39_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang39_build_type=Debug+shared=True
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang39_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang39_build_type=Release+shared=False
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang39_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang39_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang39_build_type=Release+shared=True
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang40_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=False
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang40_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang40_build_type=Debug+shared=True
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang40_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang40_build_type=Release+shared=False
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang40_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang40_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang40_build_type=Release+shared=True
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang50_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=False
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang50_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang50_build_type=Debug+shared=True
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang50_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang50_build_type=Release+shared=False
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang50_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang50_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang50_build_type=Release+shared=True
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang60_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=False
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang60_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_clang60_build_type=Debug+shared=True
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang60_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_clang60_build_type=Release+shared=False
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_clang60_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_clang60_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc5_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=False
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc5_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc5_build_type=Debug+shared=True
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc5_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=False
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc5_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc5_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=True
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc6_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=False
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc6_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc6_build_type=Debug+shared=True
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc6_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=False
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc6_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc6_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=True
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc7_build_type=Debug+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=False
+  - build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=False
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc7_build_type=Debug+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Debug+shared=True
+  - build_compiler-rt_3.8.0_gcc7_build_type=Debug+shared=True
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc7_build_type=Release+shared=False:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=False
+  - build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=False
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_libcxx_3.8.0_gcc7_build_type=Release+shared=True:
+  dependencies:
+  - build_llvm_3.8.0_gcc7_build_type=Release+shared=True
+  - build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=True
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: libcxx
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang38_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang38_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang38_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang38_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conanclang38
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang39_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang39_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang39_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang39_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conanclang39
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang40_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang40_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang40_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang40_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conanclang40
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang50_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang50_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang50_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang50_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conanclang50
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang60_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang60_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang60_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_clang60_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conanclang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc5_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc5_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc5_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc5_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conangcc5
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc6_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc6_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc6_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc6_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conangcc6
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc7_build_type=Debug+shared=False:
+  dependencies: []
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc7_build_type=Debug+shared=True:
+  dependencies: []
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Debug default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc7_build_type=Release+shared=False:
+  dependencies: []
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+build_llvm_3.8.0_gcc7_build_type=Release+shared=True:
+  dependencies: []
+  image: lasote/conangcc7
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
+    llvm Manu343726/testing
+  - conan remove -b -s -f "*"
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  stage: llvm
+  tags:
+  - linux
+  - docker
+stages:
+- llvm
+- compiler-rt
+- libcxx
+- clang

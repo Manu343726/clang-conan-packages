@@ -55,11 +55,24 @@ def filter_package_args(package_args, expected_category):
 
     return (filtered, tuple(others))
 
-def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user, channel, package_args):
-    job = "{}_{}_{}_{}".format('+'.join(template["packages"]), version, compiler, pretty_format_flags(package_args))
-    build_job = "build_" + job
-    test_job = "test_" + job
-    deploy_job = "deploy_" + job
+def job_tag(packages, compiler, version, package_args):
+    return "{}_{}_{}_{}".format('+'.join(packages), version, compiler, pretty_format_flags(package_args))
+
+def build_job_tag(packages, compiler, version, package_args):
+    return "build_" + job_tag(packages, compiler, version, package_args)
+
+def test_job_tag(packages, compiler, version, package_args):
+    return "test_" + job_tag(packages, compiler, version, package_args)
+
+def deploy_job_tag(packages, compiler, version, package_args):
+    return "deploy_" + job_tag(packages, compiler, version, package_args)
+
+def build_job_dependencies(packages, package):
+    return packages[:packages.index(package)]
+
+def generate_gitlab_package(gitlab_ci, remote, package, dependencies, compiler, version, user, channel, package_args):
+    job = job_tag([package], compiler, version, package_args)
+    build_job = build_job_tag([package], compiler, version, package_args)
 
     settings, others = filter_package_args(package_args, "settings")
 
@@ -68,23 +81,15 @@ def generate_gitlab_package(gitlab_ci, remote, packages, compiler, version, user
     gitlab_ci[build_job] = {
         "tags": ["linux", "docker"],
         "image": "lasote/conan" + compiler,
-        "stage": "build",
-        "artifacts": {"paths": ["conan_data/"]},
-        "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + \
-                  ["CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel} && conan remove -b -s -f \"*\"".format(version=version, package=package, user=user, channel=channel, flags=format_flags(packages, others)) for package in packages] + \
-                  ["cp -r /home/conan/.conan/ conan_data/"]
-    }
-
-    gitlab_ci[deploy_job] = {
-        "tags": ["linux", "docker"],
-        "image": "lasote/conan" + compiler,
-        "stage": "deploy",
-        "dependencies": [build_job],
-        "script": [
-            "cp -rf conan_data/.conan /home/conan/",
-            "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
-        ] + \
-            ["conan upload {}/{}@{}/{} -r {} --all".format(package, version, user, channel, remote) for package in packages]
+        "stage": package,
+        "dependencies": [build_job_tag([dependency], compiler, version, package_args) for dependency in dependencies],
+        "script": ["conan profile update settings.{}={} default".format(name, value) for name, value in settings] + [
+            "CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}" \
+                .format(version=version, package=package, user=user, channel=channel, flags=format_flags(dependencies + [package], others)),
+            "conan remove -b -s -f \"*\"",
+            "conan upload {package}/{version}@{user}/{channel} -r {remote} --all" \
+                .format(package=package, version=version, user=user, channel=channel, remote=remote)
+        ]
     }
 
 
@@ -93,15 +98,19 @@ def generate_gitlab(template):
 
     gitlab_ci['before_script'] = [
         "conan remote add {} {}".format(template["remote"]["name"], template["remote"]["url"]),
-        "conan profile new --detect default"
+        "conan profile new --detect default",
+        "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
     ]
+
+    gitlab_ci["stages"] = template["packages"]
 
     package_matrix = input_matrix(template, ["settings", "options"])
 
     for compiler in template["compilers"]:
         for version in template["versions"]:
             for package_args in package_matrix:
-                generate_gitlab_package(gitlab_ci, template["remote"]["name"], template["packages"], compiler, version, template["channel"]["user"], template["channel"]["channel"], package_args)
+                for package in template["packages"]:
+                    generate_gitlab_package(gitlab_ci, template["remote"]["name"], package, build_job_dependencies(template["packages"], package), compiler, version, template["channel"]["user"], template["channel"]["channel"], package_args)
 
     yaml.dump(gitlab_ci, open('.gitlab-ci.yml', 'w'), default_flow_style = False)
 
