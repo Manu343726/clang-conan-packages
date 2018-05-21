@@ -94,6 +94,8 @@ def generate_gitlab_package(gitlab_ci, remote, package, dependencies, compiler, 
 
 
 def generate_gitlab(template):
+    total_package_variants = 0
+    total_packages = 0
     gitlab_ci = {}
 
     gitlab_ci['before_script'] = [
@@ -109,8 +111,14 @@ def generate_gitlab(template):
     for compiler in template["compilers"]:
         for version in template["versions"]:
             for package_args in package_matrix:
+                total_package_variants += 1
+
                 for package in template["packages"]:
+                    total_packages += 1
                     generate_gitlab_package(gitlab_ci, template["remote"]["name"], package, build_job_dependencies(template["packages"], package), compiler, version, template["channel"]["user"], template["channel"]["channel"], package_args)
+
+    print("\n\n Done. {} package variants in {} packages/stages. Total: {} different compiled packages/jobs."
+        .format(total_package_variants, len(gitlab_ci["stages"]), total_packages))
 
     yaml.dump(gitlab_ci, open('.gitlab-ci.yml', 'w'), default_flow_style = False)
 

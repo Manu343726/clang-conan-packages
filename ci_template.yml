@@ -14,8 +14,8 @@ options:
 
 settings:
   build_type:
-    - Debug
     - Release
+    - MinSizeRel
 
 channel:
   user: Manu343726
@@ -31,8 +31,5 @@ compilers:
   - gcc5
   - gcc6
   - gcc7
-  - clang38
-  - clang39
-  - clang40
   - clang50
   - clang60
