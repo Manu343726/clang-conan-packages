@@ -9,12 +9,12 @@ from conans import ConanFile, tools
 
 class {package_class}ConanTestFile(ConanFile):
     def source(self):
-	with tools.pythonpath(self):
-	    import {package_class}
+        with tools.pythonpath(self):
+            import {package_class}
 
     def build(self):
-	with tools.pythonpath(self):
-	    import {package_class}
+        with tools.pythonpath(self):
+            import {package_class}
 
     def test(self):
         pass
