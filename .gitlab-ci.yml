@@ -1,4 +1,5 @@
 before_script:
+- conan --version
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
 - conan profile new --detect default
 - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
@@ -14,7 +15,8 @@ build_clang_3.8.0_clang50_build_type=MinSizeRel+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -30,7 +32,8 @@ build_clang_3.8.0_clang50_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -47,7 +50,8 @@ build_clang_3.8.0_clang50_build_type=Release+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -63,7 +67,8 @@ build_clang_3.8.0_clang50_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -80,7 +85,8 @@ build_clang_3.8.0_clang60_build_type=MinSizeRel+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -96,7 +102,8 @@ build_clang_3.8.0_clang60_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -113,7 +120,8 @@ build_clang_3.8.0_clang60_build_type=Release+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -129,7 +137,8 @@ build_clang_3.8.0_clang60_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -146,7 +155,8 @@ build_clang_3.8.0_gcc5_build_type=MinSizeRel+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -162,7 +172,8 @@ build_clang_3.8.0_gcc5_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -179,7 +190,8 @@ build_clang_3.8.0_gcc5_build_type=Release+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -195,7 +207,8 @@ build_clang_3.8.0_gcc5_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -212,7 +225,8 @@ build_clang_3.8.0_gcc6_build_type=MinSizeRel+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -228,7 +242,8 @@ build_clang_3.8.0_gcc6_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -245,7 +260,8 @@ build_clang_3.8.0_gcc6_build_type=Release+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -261,7 +277,8 @@ build_clang_3.8.0_gcc6_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -278,7 +295,8 @@ build_clang_3.8.0_gcc7_build_type=MinSizeRel+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -294,7 +312,8 @@ build_clang_3.8.0_gcc7_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -311,7 +330,8 @@ build_clang_3.8.0_gcc7_build_type=Release+shared=False:
     -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
     Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
   tags:
   - linux
@@ -327,8 +347,22 @@ build_clang_3.8.0_gcc7_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload clang/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: clang
+  tags:
+  - linux
+  - docker
+build_clang_conan_tools/0.1@Manu343726/testing:
+  image: lasote/conangcc5
+  script:
+  - ./common_recipe_scripts_package_generator.py clang_conan_tools 0.1 Manu343726
+    testing --with-test --url "https://gitlab.com/Manu343726/clang-conan-packages"
+  - cat -n clang_conan_tools/conanfile.py
+  - cat -n clang_conan_tools/test_package/conanfile.py
+  - conan create clang_conan_tools Manu343726/testing
+  - conan upload clang_conan_tools/0.1@Manu343726/testing --all --force --retry 3
+  stage: common-recipe-scripts
   tags:
   - linux
   - docker
@@ -341,7 +375,8 @@ build_compiler-rt_3.8.0_clang50_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -355,7 +390,8 @@ build_compiler-rt_3.8.0_clang50_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -369,7 +405,8 @@ build_compiler-rt_3.8.0_clang50_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -383,7 +420,8 @@ build_compiler-rt_3.8.0_clang50_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -397,7 +435,8 @@ build_compiler-rt_3.8.0_clang60_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -411,7 +450,8 @@ build_compiler-rt_3.8.0_clang60_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -425,7 +465,8 @@ build_compiler-rt_3.8.0_clang60_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -439,7 +480,8 @@ build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -453,7 +495,8 @@ build_compiler-rt_3.8.0_gcc5_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -467,7 +510,8 @@ build_compiler-rt_3.8.0_gcc5_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -481,7 +525,8 @@ build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -495,7 +540,8 @@ build_compiler-rt_3.8.0_gcc5_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -509,7 +555,8 @@ build_compiler-rt_3.8.0_gcc6_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -523,7 +570,8 @@ build_compiler-rt_3.8.0_gcc6_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -537,7 +585,8 @@ build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -551,7 +600,8 @@ build_compiler-rt_3.8.0_gcc6_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -565,7 +615,8 @@ build_compiler-rt_3.8.0_gcc7_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -579,7 +630,8 @@ build_compiler-rt_3.8.0_gcc7_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -593,7 +645,8 @@ build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -607,7 +660,8 @@ build_compiler-rt_3.8.0_gcc7_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
   stage: compiler-rt
   tags:
   - linux
@@ -622,7 +676,8 @@ build_libcxx_3.8.0_clang50_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -637,7 +692,8 @@ build_libcxx_3.8.0_clang50_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -652,7 +708,8 @@ build_libcxx_3.8.0_clang50_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -667,7 +724,8 @@ build_libcxx_3.8.0_clang50_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -682,7 +740,8 @@ build_libcxx_3.8.0_clang60_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -697,7 +756,8 @@ build_libcxx_3.8.0_clang60_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -712,7 +772,8 @@ build_libcxx_3.8.0_clang60_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -727,7 +788,8 @@ build_libcxx_3.8.0_clang60_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -742,7 +804,8 @@ build_libcxx_3.8.0_gcc5_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -757,7 +820,8 @@ build_libcxx_3.8.0_gcc5_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -772,7 +836,8 @@ build_libcxx_3.8.0_gcc5_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -787,7 +852,8 @@ build_libcxx_3.8.0_gcc5_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -802,7 +868,8 @@ build_libcxx_3.8.0_gcc6_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -817,7 +884,8 @@ build_libcxx_3.8.0_gcc6_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -832,7 +900,8 @@ build_libcxx_3.8.0_gcc6_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -847,7 +916,8 @@ build_libcxx_3.8.0_gcc6_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -862,7 +932,8 @@ build_libcxx_3.8.0_gcc7_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -877,7 +948,8 @@ build_libcxx_3.8.0_gcc7_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -892,7 +964,8 @@ build_libcxx_3.8.0_gcc7_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     -o compiler-rt:shared=False -o libcxx:shared=False libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -907,7 +980,8 @@ build_libcxx_3.8.0_gcc7_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload libcxx/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: libcxx
   tags:
   - linux
@@ -920,7 +994,8 @@ build_llvm_3.8.0_clang50_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -933,7 +1008,8 @@ build_llvm_3.8.0_clang50_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -946,7 +1022,8 @@ build_llvm_3.8.0_clang50_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -959,7 +1036,8 @@ build_llvm_3.8.0_clang50_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -972,7 +1050,8 @@ build_llvm_3.8.0_clang60_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -985,7 +1064,8 @@ build_llvm_3.8.0_clang60_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -998,7 +1078,8 @@ build_llvm_3.8.0_clang60_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1011,7 +1092,8 @@ build_llvm_3.8.0_clang60_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1024,7 +1106,8 @@ build_llvm_3.8.0_gcc5_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1037,7 +1120,8 @@ build_llvm_3.8.0_gcc5_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1050,7 +1134,8 @@ build_llvm_3.8.0_gcc5_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1063,7 +1148,8 @@ build_llvm_3.8.0_gcc5_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1076,7 +1162,8 @@ build_llvm_3.8.0_gcc6_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1089,7 +1176,8 @@ build_llvm_3.8.0_gcc6_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1102,7 +1190,8 @@ build_llvm_3.8.0_gcc6_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1115,7 +1204,8 @@ build_llvm_3.8.0_gcc6_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1128,7 +1218,8 @@ build_llvm_3.8.0_gcc7_build_type=MinSizeRel+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1141,7 +1232,8 @@ build_llvm_3.8.0_gcc7_build_type=MinSizeRel+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1154,7 +1246,8 @@ build_llvm_3.8.0_gcc7_build_type=Release+shared=False:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=False
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
@@ -1167,12 +1260,14 @@ build_llvm_3.8.0_gcc7_build_type=Release+shared=True:
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
     llvm Manu343726/testing
   - conan remove -b -s -f "*"
-  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all
+  - conan upload llvm/3.8.0@Manu343726/testing -r Manu343726 --all --force --retry
+    3
   stage: llvm
   tags:
   - linux
   - docker
 stages:
+- common-recipe-scripts
 - llvm
 - compiler-rt
 - libcxx

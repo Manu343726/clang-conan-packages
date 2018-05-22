@@ -87,8 +87,30 @@ def generate_gitlab_package(gitlab_ci, remote, package, dependencies, compiler, 
             "CONAN_VERSION_OVERRIDE={version} conan create --profile=default {flags} {package} {user}/{channel}" \
                 .format(version=version, package=package, user=user, channel=channel, flags=format_flags(dependencies + [package], others)),
             "conan remove -b -s -f \"*\"",
-            "conan upload {package}/{version}@{user}/{channel} -r {remote} --all" \
+            "conan upload {package}/{version}@{user}/{channel} -r {remote} --all --force --retry 3" \
                 .format(package=package, version=version, user=user, channel=channel, remote=remote)
+        ]
+    }
+
+def generate_gitlab_recipe_scripts_package(gitlab_ci, remote, package, user, channel):
+    job = "build_{}@{}/{}".format(package, user, channel)
+    package_id = package.split("/")
+    package_name = package_id[0]
+    package_version = package_id[1]
+
+    print("gitlab ci job {}".format(job))
+
+    gitlab_ci[job] = {
+        "tags": ["linux", "docker"],
+        "image": "lasote/conangcc5",
+        "stage": "common-recipe-scripts",
+        "script": [
+            "./common_recipe_scripts_package_generator.py {} {} {} {} --with-test --url \"https://gitlab.com/Manu343726/clang-conan-packages\""
+                .format(package_name, package_version, user, channel),
+            "cat -n {}/conanfile.py".format(package_name),
+            "cat -n {}/test_package/conanfile.py".format(package_name),
+            "conan create {} {}/{}".format(package_name, user, channel),
+            "conan upload {}@{}/{} --all --force --retry 3".format(package, user, channel)
         ]
     }
 
@@ -99,12 +121,22 @@ def generate_gitlab(template):
     gitlab_ci = {}
 
     gitlab_ci['before_script'] = [
+        "conan --version",
         "conan remote add {} {}".format(template["remote"]["name"], template["remote"]["url"]),
         "conan profile new --detect default",
         "conan user {} -p ${} -r {}".format(template["remote"]["user"], template["remote"]["password"], template["remote"]["name"])
     ]
 
-    gitlab_ci["stages"] = template["packages"]
+    gitlab_ci["stages"] = list(template["packages"])
+
+    if "common-recipe-scripts" in template:
+        gitlab_ci["stages"].insert(0, "common-recipe-scripts")
+
+        for scripts_package in template["common-recipe-scripts"]:
+            total_packages += 1
+            generate_gitlab_recipe_scripts_package(gitlab_ci, template["remote"]["name"], scripts_package, template["channel"]["user"], template["channel"]["channel"])
+
+
 
     package_matrix = input_matrix(template, ["settings", "options"])
 

@@ -1,11 +1,14 @@
-versions:
-  - 3.8.0
+common-recipe-scripts:
+  - clang_conan_tools/0.1
 
 packages:
   - llvm
   - compiler-rt
   - libcxx
   - clang
+
+versions:
+  - 3.8.0
 
 options:
   shared:
