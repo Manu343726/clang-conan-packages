@@ -105,12 +105,12 @@ def generate_gitlab_recipe_scripts_package(gitlab_ci, remote, package, user, cha
         "image": "lasote/conangcc5",
         "stage": "common-recipe-scripts",
         "script": [
-            "./common_recipe_scripts_package_generator.py {} {} {} {} --with-test --url \"https://gitlab.com/Manu343726/clang-conan-packages\""
+            "export RECIPE_DIR=`./common_recipe_scripts_package_generator.py {} {} {} {} --with-test --url \"https://gitlab.com/Manu343726/clang-conan-packages\"`"
                 .format(package_name, package_version, user, channel),
-            "cat -n {}/conanfile.py".format(package_name),
-            "cat -n {}/test_package/conanfile.py".format(package_name),
-            "conan create {} {}/{}".format(package_name, user, channel),
-            "conan upload {}@{}/{} --all --force --retry 3".format(package, user, channel)
+            "cat -n $RECIPE_DIR/conanfile.py",
+            "cat -n $RECIPE_DIR/test_package/conanfile.py",
+            "conan create $RECIPE_DIR {}/{}".format(user, channel),
+            "conan upload {}@{}/{} --all --force --retry 3 -r {}".format(package, user, channel, remote)
         ]
     }
 
