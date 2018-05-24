@@ -1,11 +1,8 @@
 from contextlib import contextmanager
-from conans import ConanFile, CMake
 from conans.tools import download, unzip
 import shutil
 import os
 import platform
-
-VERSION = "3.8.0"
 
 
 @contextmanager

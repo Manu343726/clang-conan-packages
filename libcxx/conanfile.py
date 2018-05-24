@@ -1,52 +1,12 @@
-from contextlib import contextmanager
 from conans import ConanFile, CMake
-from conans.tools import download, unzip, patch
-import shutil
-import os
-import platform
+import shutil, os
 
-VERSION = "3.8.0"
+DEFAULT_LIBCXX_VERSION = "3.8.0"
+CLANG_CONAN_TOOLS_VERSION = "0.1"
 
-
-@contextmanager
-def in_dir(directory):
-    last_dir = os.getcwd()
-    try:
-        os.makedirs(directory)
-    except OSError:
-        pass
-
-    try:
-        os.chdir(directory)
-        yield directory
-    finally:
-        os.chdir(last_dir)
-
-
-def extract_from_url(url):
-    print("download {}".format(url))
-    zip_name = os.path.basename(url)
-    download(url, zip_name)
-    unzip(zip_name)
-    os.unlink(zip_name)
-
-
-def download_extract_llvm_component(component, release, extract_to):
-    extract_from_url("https://bintray.com/artifact/download/"
-                     "polysquare/LLVM/{comp}-{ver}.src.zip"
-                     "".format(ver=release, comp=component))
-    shutil.move("{comp}-{ver}.src".format(comp=component,
-                                          ver=release),
-                extract_to)
-
-
-BUILD_DIR = ("C:/__build" if platform.system == "Windows"
-             else "build")
-INSTALL_DIR = "install"  # This needs to be a relative path
-
-class ClangConan(ConanFile):
+class LibCxxConan(ConanFile):
     name = "libcxx"
-    version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
+    version = os.environ.get("CONAN_VERSION_OVERRIDE", DEFAULT_LIBCXX_VERSION)
     generators = "cmake"
     url = "http://github.com/Manu343726/libcxx-conan"
     license = "BSD"
@@ -67,15 +27,19 @@ class ClangConan(ConanFile):
     def requirements(self):
         self._package_reference = "{}@{}/{}".format(self.version, self.user, self.channel)
         self.requires("llvm/" + self._package_reference)
+        self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
     def source(self):
-        download_extract_llvm_component("libcxx", ClangConan.version,
+        from common import download_extract_llvm_component
+        from conans.tools import download, patch
+        download_extract_llvm_component("libcxx", LibCxxConan.version,
                                         "libcxx")
 
         download("https://github.com/llvm-mirror/libcxx/commit/6e02e89f65ca1ca1d6ce30fbc557563164dd327e.patch", "missing_glibc_xlocale.patch")
         patch(base_path="libcxx", patch_file="missing_glibc_xlocale.patch")
 
     def build(self):
+        from common import BUILD_DIR, INSTALL_DIR
         cmake = CMake(self)
 
         for component in ["libcxx"]:
@@ -136,6 +100,7 @@ class ClangConan(ConanFile):
         cmake.install()
 
     def package(self):
+        from common import INSTALL_DIR
         for component in ["libcxx"]:
             install = os.path.join(INSTALL_DIR, component)
             self.copy(pattern="*",

@@ -1,52 +1,12 @@
-from contextlib import contextmanager
 from conans import ConanFile, CMake
-from conans.tools import download, unzip
-import shutil
-import os
-import platform
+import shutil, os
 
-VERSION = "3.8.0"
-
-
-@contextmanager
-def in_dir(directory):
-    last_dir = os.getcwd()
-    try:
-        os.makedirs(directory)
-    except OSError:
-        pass
-
-    try:
-        os.chdir(directory)
-        yield directory
-    finally:
-        os.chdir(last_dir)
-
-
-def extract_from_url(url):
-    print("download {}".format(url))
-    zip_name = os.path.basename(url)
-    download(url, zip_name)
-    unzip(zip_name)
-    os.unlink(zip_name)
-
-
-def download_extract_llvm_component(component, release, extract_to):
-    extract_from_url("https://bintray.com/artifact/download/"
-                     "polysquare/LLVM/{comp}-{ver}.src.zip"
-                     "".format(ver=release, comp=component))
-    shutil.move("{comp}-{ver}.src".format(comp=component,
-                                          ver=release),
-                extract_to)
-
-
-BUILD_DIR = ("C:/__build" if platform.system == "Windows"
-             else "build")
-INSTALL_DIR = "install"  # This needs to be a relative path
+DEFAULT_CLANG_VERSION = "3.8.0"
+CLANG_CONAN_TOOLS_VERSION = "0.1"
 
 class ClangConan(ConanFile):
     name = "clang"
-    version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
+    version = os.environ.get("CONAN_VERSION_OVERRIDE", DEFAULT_CLANG_VERSION)
     generators = "cmake"
     url = "http://gitlab.com/Manu343726/clang-conan"
     license = "BSD"
@@ -67,6 +27,7 @@ class ClangConan(ConanFile):
 
         self.requires("llvm/" + self._package_reference)
         self.requires("compiler-rt/" + self._package_reference)
+        self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
         if self.settings.compiler != "Visual Studio":
             self.requires("libcxx/" + self._package_reference)
@@ -78,6 +39,7 @@ class ClangConan(ConanFile):
             self.options.extra_tools = False
 
     def source(self):
+        from common import download_extract_llvm_component
         download_extract_llvm_component("cfe", ClangConan.version,
                                         "clang")
 
@@ -86,6 +48,7 @@ class ClangConan(ConanFile):
                                             "clang/tools/extra")
 
     def build(self):
+        from common import BUILD_DIR, INSTALL_DIR
         if self.settings.arch == "x86_64" and self.settings.compiler == "Visual Studio":
             cmake = CMake(self, toolset="host=x64")
         else:
@@ -152,6 +115,7 @@ class ClangConan(ConanFile):
             cmake.install()
 
     def package(self):
+        from common import INSTALL_DIR
         for component in ["clang"]:
             install = os.path.join(self.build_folder, INSTALL_DIR)
             self.copy(pattern="*",
