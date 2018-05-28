@@ -129,6 +129,13 @@ def generate_gitlab(template):
 
     gitlab_ci["stages"] = list(template["packages"])
 
+    if "explicit-jobs" in template:
+        for name, job in template["explicit-jobs"].items():
+            gitlab_ci[name] = job
+
+            if "stage" in job and not job["stage"] in gitlab_ci["stages"]:
+                gitlab_ci["stages"].insert(0, job["stage"])
+
     if "common-recipe-scripts" in template:
         gitlab_ci["stages"].insert(0, "common-recipe-scripts")
 
