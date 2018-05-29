@@ -31,8 +31,8 @@ class CompilerRTConan(ConanFile):
         self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
     def source(self):
-        from common import download_extract_llvm_component
-        download_extract_llvm_component("compiler-rt", CompilerRTConan.version,
+        from common import get_sources
+        get_sources("compiler-rt", CompilerRTConan.version,
                                         "compiler-rt")
 
     def build(self):

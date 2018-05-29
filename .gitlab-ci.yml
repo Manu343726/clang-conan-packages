@@ -353,15 +353,15 @@ build_clang_3.8.0_gcc7_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_clang_conan_tools/0.1@Manu343726/testing:
+build_clang_conan_tools/0.2@Manu343726/testing:
   image: lasote/conangcc5
   script:
   - export RECIPE_DIR=`./common_recipe_scripts_package_generator.py clang_conan_tools
-    0.1 Manu343726 testing --with-test --url "https://gitlab.com/Manu343726/clang-conan-packages"`
+    0.2 Manu343726 testing --with-test --url "https://gitlab.com/Manu343726/clang-conan-packages"`
   - cat -n $RECIPE_DIR/conanfile.py
   - cat -n $RECIPE_DIR/test_package/conanfile.py
   - conan create $RECIPE_DIR Manu343726/testing
-  - conan upload clang_conan_tools/0.1@Manu343726/testing --all --force --retry 3
+  - conan upload clang_conan_tools/0.2@Manu343726/testing --all --force --retry 3
     -r Manu343726
   stage: common-recipe-scripts
   tags:

@@ -30,9 +30,9 @@ class LibCxxConan(ConanFile):
         self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
     def source(self):
-        from common import download_extract_llvm_component
+        from common import get_sources
         from conans.tools import download, patch
-        download_extract_llvm_component("libcxx", LibCxxConan.version,
+        get_sources("libcxx", LibCxxConan.version,
                                         "libcxx")
 
         download("https://github.com/llvm-mirror/libcxx/commit/6e02e89f65ca1ca1d6ce30fbc557563164dd327e.patch", "missing_glibc_xlocale.patch")

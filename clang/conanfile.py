@@ -39,12 +39,12 @@ class ClangConan(ConanFile):
             self.options.extra_tools = False
 
     def source(self):
-        from common import download_extract_llvm_component
-        download_extract_llvm_component("cfe", ClangConan.version,
+        from common import get_sources
+        get_sources("cfe", ClangConan.version,
                                         "clang")
 
         if self.options.extra_tools:
-            download_extract_llvm_component("clang-tools-extra", ClangConan.version,
+            get_sources("clang-tools-extra", ClangConan.version,
                                             "clang/tools/extra")
 
     def build(self):

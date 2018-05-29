@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 import shutil, os
 
 DEFAULT_LLVM_VERSION = "3.8.0"
-CLANG_CONAN_TOOLS_VERSION = "0.1"
+CLANG_CONAN_TOOLS_VERSION = "0.2"
 
 class LLVMConan(ConanFile):
     name = "llvm"
@@ -26,8 +26,8 @@ class LLVMConan(ConanFile):
         self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
     def source(self):
-        from common import download_extract_llvm_component
-        download_extract_llvm_component("llvm", LLVMConan.version, "src")
+        from common import get_sources
+        get_sources("llvm", LLVMConan.version, "src")
 
     def build(self):
         from common import INSTALL_DIR, BUILD_DIR

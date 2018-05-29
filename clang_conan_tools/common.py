@@ -37,6 +37,15 @@ def download_extract_llvm_component(component, release, extract_to):
                 extract_to)
 
 
+
+SOURCES_REPOSITORY = os.environ.get("CONAN_LLVM_SOURCES_REPO", "https://dl.bintray.com/manu343726/llvm-sources")
+
+def get_sources(component, version, dest):
+    package_name = "{}-{}.src".format(component, version)
+    file_url = "{url}/{package}.tar.gz".format(url=SOURCES_REPOSITORY, package=package_name)
+    extract_from_url(file_url)
+    shutil.move(package_name, dest)
+
 BUILD_DIR = ("C:/__build" if platform.system == "Windows"
              else "build")
 INSTALL_DIR = "install"  # This needs to be a relative path
