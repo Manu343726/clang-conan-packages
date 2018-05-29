@@ -9,6 +9,10 @@ packages:
 
 versions:
   - 3.8.0
+  - 3.9.0
+  - 4.0.0
+  - 5.0.0
+  - 6.0.0
 
 options:
   shared:
