@@ -100,7 +100,7 @@ class CompilerRTConan(ConanFile):
                       dst="include",
                       src=os.path.join(install, "include"),
                       keep_path=True)
-            for pattern in ["*.a", "*.h", "*.so*", "*.lib", "*.dylib", "*.dll", "*.cmake"]:
+            for pattern in ["*.a*", "*.h", "*.so*", "*.lib", "*.dylib*", "*.dll*", "*.cmake"]:
                 self.copy(pattern=pattern,
                           dst="lib",
                           src=os.path.join(install, "lib"),
