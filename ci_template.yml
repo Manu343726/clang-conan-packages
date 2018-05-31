@@ -9,20 +9,15 @@ packages:
 
 versions:
   - 3.8.0
-  - 3.9.0
   - 4.0.0
-  - 5.0.0
-  - 6.0.0
 
 options:
   shared:
     - True
-    - False
 
 settings:
   build_type:
     - Release
-    - MinSizeRel
 
 channel:
   user: Manu343726
@@ -36,9 +31,7 @@ remote:
 
 compilers:
   - gcc5
-  - gcc6
   - gcc7
-  - clang50
   - clang60
 
 explicit-jobs:
