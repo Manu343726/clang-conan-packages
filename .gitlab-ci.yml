@@ -126,7 +126,7 @@ build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True:
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
