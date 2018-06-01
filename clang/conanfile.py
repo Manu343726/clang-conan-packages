@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 import shutil, os
 
 DEFAULT_CLANG_VERSION = "3.8.0"
-CLANG_CONAN_TOOLS_VERSION = "0.1"
+CLANG_CONAN_TOOLS_VERSION = "0.2"
 
 class ClangConan(ConanFile):
     name = "clang"
