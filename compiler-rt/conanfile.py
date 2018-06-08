@@ -86,6 +86,7 @@ class CompilerRTConan(ConanFile):
                  # AddressSanitizers disabled, cannot be built with latest glibc
                  # I tried first to patch the sanitizers, without result. See sanitizer_stack_t_glibc.patch
                  "COMPILER_RT_BUILD_SANITIZERS": False,
+                 "COMPILER_RT_BUILD_XRAY": False, # XRay cannot be built either, depends on lib/sanitizer_common
                  "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
                  "BUILD_SHARED_LIBS": self.options.shared if "shared" in self.options else False
                 }, source_folder="compiler-rt")
