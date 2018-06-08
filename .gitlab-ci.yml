@@ -1,4 +1,5 @@
 before_script:
+- export PATH=$PATH:$HOME/.local/bin/
 - pip install --user manu343726-conan-tools
 - conan --version
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
