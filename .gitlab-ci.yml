@@ -1,4 +1,5 @@
 before_script:
+- pip install --user manu343726-conan-tools
 - conan --version
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
 - conan profile new --detect default
@@ -108,7 +109,7 @@ build_clang_4.0.0_gcc7_build_type=Release+shared=True:
 build_clang_conan_tools/0.2@Manu343726/testing:
   image: lasote/conangcc5
   script:
-  - export RECIPE_DIR=`./common_recipe_scripts_package_generator.py clang_conan_tools
+  - export RECIPE_DIR=`manu343726-conan-tools generate_python_package clang_conan_tools
     0.2 Manu343726 testing --with-test --url "https://gitlab.com/Manu343726/clang-conan-packages"`
   - cat -n $RECIPE_DIR/conanfile.py
   - cat -n $RECIPE_DIR/test_package/conanfile.py
@@ -126,7 +127,7 @@ build_compiler-rt_3.8.0_clang60_build_type=Release+shared=True:
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=3.8.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing --build=missing
+    -o compiler-rt:shared=True compiler-rt Manu343726/testing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/3.8.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
