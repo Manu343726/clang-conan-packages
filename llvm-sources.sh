@@ -21,6 +21,11 @@ else
     JFROG_CLI=$JFROG_CLI_DIR/jfrog
 fi
 
+if $JFROG_CLI bt version-show $PACKAGE_RELEASE; then
+    echo $COMPONENT $VERSION Sources already deployed, skipping
+    exit 0
+fi
+
 wget $URL -P $TMP_DIR
 cd $TMP_DIR
 FILENAME=`ls $TMP_DIR`
