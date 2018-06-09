@@ -49,3 +49,26 @@ def get_sources(component, version, dest):
 BUILD_DIR = ("C:/__build" if platform.system == "Windows"
              else "build")
 INSTALL_DIR = "install"  # This needs to be a relative path
+
+def package(conanfile):
+    self.copy(pattern="*",
+              dst="include",
+              src=os.path.join(INSTALL_DIR, "include"),
+              keep_path=True)
+    for pattern in ["*.a*", "*.h", "*.so*", "*.lib", "*.dylib*", "*.dll*", "*.cmake"]:
+        self.copy(pattern=pattern,
+                  dst="lib",
+                  src=os.path.join(INSTALL_DIR, "lib"),
+                  keep_path=True)
+    self.copy(pattern="*",
+              dst="share",
+              src=os.path.join(INSTALL_DIR, "share"),
+              keep_path=True)
+    self.copy(pattern="*",
+              dst="bin",
+              src=os.path.join(INSTALL_DIR, "bin"),
+              keep_path=True)
+    self.copy(pattern="*",
+              dst="libexec",
+              src=os.path.join(INSTALL_DIR, "libexec"),
+              keep_path=True)

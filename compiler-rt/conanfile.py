@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 import shutil, os
 
 DEFAULT_COMPILERRT_VERSION = "3.8.0"
-CLANG_CONAN_TOOLS_VERSION = "0.2"
+CLANG_CONAN_TOOLS_VERSION = "0.3"
 
 class CompilerRTConan(ConanFile):
     name = "compiler-rt"
@@ -94,28 +94,5 @@ class CompilerRTConan(ConanFile):
                 cmake.install()
 
     def package(self):
-        from common import INSTALL_DIR
-        for component in ["compiler-rt"]:
-            install = os.path.join(INSTALL_DIR, component)
-            self.copy(pattern="*",
-                      dst="include",
-                      src=os.path.join(install, "include"),
-                      keep_path=True)
-            for pattern in ["*.a*", "*.h", "*.so*", "*.lib", "*.dylib*", "*.dll*", "*.cmake"]:
-                self.copy(pattern=pattern,
-                          dst="lib",
-                          src=os.path.join(install, "lib"),
-                          keep_path=True)
-            self.copy(pattern="*",
-                      dst="share",
-                      src=os.path.join(install, "share"),
-                      keep_path=True)
-            self.copy(pattern="*",
-                      dst="bin",
-                      src=os.path.join(install, "bin"),
-                      keep_path=True)
-            self.copy(pattern="*",
-                      dst="libexec",
-                      src=os.path.join(install, "libexec"),
-                      keep_path=True)
-
+        import common
+        common.package(self)

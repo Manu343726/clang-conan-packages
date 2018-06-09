@@ -1,5 +1,5 @@
 common-recipe-scripts:
-  - clang_conan_tools/0.2
+  - clang_conan_tools/0.3
 
 packages:
   - llvm

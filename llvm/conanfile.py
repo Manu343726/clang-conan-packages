@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 import shutil, os
 
 DEFAULT_LLVM_VERSION = "3.8.0"
-CLANG_CONAN_TOOLS_VERSION = "0.2"
+CLANG_CONAN_TOOLS_VERSION = "0.3"
 
 class LLVMConan(ConanFile):
     name = "llvm"
@@ -108,25 +108,5 @@ class LLVMConan(ConanFile):
         self.info.settings.build_type = "Release"
 
     def package(self):
-        from common import INSTALL_DIR
-        self.copy(pattern="*",
-                  dst="include",
-                  src=os.path.join(INSTALL_DIR, "include"),
-                  keep_path=True)
-        for pattern in ["*.a*", "*.h", "*.so*", "*.lib", "*.dylib*", "*.dll*", "*.cmake"]:
-            self.copy(pattern=pattern,
-                      dst="lib",
-                      src=os.path.join(INSTALL_DIR, "lib"),
-                      keep_path=True)
-        self.copy(pattern="*",
-                  dst="share",
-                  src=os.path.join(INSTALL_DIR, "share"),
-                  keep_path=True)
-        self.copy(pattern="*",
-                  dst="bin",
-                  src=os.path.join(INSTALL_DIR, "bin"),
-                  keep_path=True)
-        self.copy(pattern="*",
-                  dst="libexec",
-                  src=os.path.join(INSTALL_DIR, "libexec"),
-                  keep_path=True)
+        import common
+        common.package(self)
