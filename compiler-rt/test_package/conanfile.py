@@ -4,15 +4,8 @@ import os
 
 
 class DefaultNameConan(ConanFile):
-    name = "DefaultName"
-    version = "0.1"
-    settings = "os", "compiler", "arch", "build_type"
-    generators = "cmake"
-
     def build(self):
-        cmake = CMake(self)
-        cmake.configure()
-        cmake.build()
+        pass
 
     def test(self):
         pass
