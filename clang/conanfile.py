@@ -88,28 +88,10 @@ class ClangConan(ConanFile):
 
             cmake.configure(defs={
              "CLANG_INCLUDE_DOCS": False,
-             "CLANG_INCLUDE_TESTS": False,
-             "CLANG_TOOLS_INCLUDE_EXTRA_DOCS": False,
-             "COMPILER_RT_INCLUDE_TESTS": False,
-             "LIBCXX_INCLUDE_TESTS": False,
-             "LIBCXX_INCLUDE_DOCS": False,
-             "LLVM_INCLUDE_TESTS": False,
-             "LLVM_INCLUDE_EXAMPLES": False,
-             "LLVM_INCLUDE_GO_TESTS": False,
-             "LLVM_BUILD_TESTS": False,
              "CMAKE_VERBOSE_MAKEFILE": True,
              "LLVM_TARGETS_TO_BUILD": "X86",
              "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
              "BUILD_SHARED_LIBS": self.options.shared if "shared" in self.options else False,
-             "CLANG_ENABLE_ARCMT": False,
-             "CLANG_TOOL_ARCMT_TEST_BUILD": False,
-             "CLANG_TOOL_CLANG_CHECK_BUILD": False,
-             "CLANG_TOOL_CLANG_FORMAT_BUILD": False,
-             "CLANG_TOOL_CLANG_FUZZER_BUILD": False,
-             "CLANG_TOOL_DIAGTOOL_BUILD": False,
-             "CLANG_TOOL_DRIVER_BUILD": False,
-             "CLANG_TOOL_DIAGTOOL_BUILD": False,
-             "CLANG_TOOL_CLANG_FUZZER_BUILD": False
             }, source_dir="clang")
             cmake.build()
             cmake.install()

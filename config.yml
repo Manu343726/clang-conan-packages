@@ -31,6 +31,7 @@ remote:
 compilers:
   - gcc5
   - gcc7
+  - gcc8
   - clang60
 
 explicit-jobs:
