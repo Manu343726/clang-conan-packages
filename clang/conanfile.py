@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools
 import shutil, os
 
 DEFAULT_CLANG_VERSION = "3.8.0"
@@ -117,3 +117,6 @@ class ClangConan(ConanFile):
         self.copy("*.dylib*", dst="bin", src="lib")
         self.copy("*", dst="include/c++/v1", src="include/c++/v1")
         self.copy("*libclang_rt.*", dst="lib", src="lib")
+
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)

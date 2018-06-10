@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools
 import shutil, os
 
 DEFAULT_COMPILERRT_VERSION = "3.8.0"
@@ -96,3 +96,6 @@ class CompilerRTConan(ConanFile):
     def package(self):
         import common
         common.package(self)
+
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
