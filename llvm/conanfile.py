@@ -67,4 +67,6 @@ class LLVMConan(ConanFile):
         common.package(self)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.libs = list(filter(
+            lambda lib: not lib in ['BugpointPasses', 'LLVMHello'],
+            tools.collect_libs(self)))
