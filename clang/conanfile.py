@@ -1,52 +1,12 @@
-from contextlib import contextmanager
-from conans import ConanFile, CMake
-from conans.tools import download, unzip
-import shutil
-import os
-import platform
+from conans import ConanFile, CMake, tools
+import shutil, os
 
-VERSION = "3.8.0"
-
-
-@contextmanager
-def in_dir(directory):
-    last_dir = os.getcwd()
-    try:
-        os.makedirs(directory)
-    except OSError:
-        pass
-
-    try:
-        os.chdir(directory)
-        yield directory
-    finally:
-        os.chdir(last_dir)
-
-
-def extract_from_url(url):
-    print("download {}".format(url))
-    zip_name = os.path.basename(url)
-    download(url, zip_name)
-    unzip(zip_name)
-    os.unlink(zip_name)
-
-
-def download_extract_llvm_component(component, release, extract_to):
-    extract_from_url("https://bintray.com/artifact/download/"
-                     "polysquare/LLVM/{comp}-{ver}.src.zip"
-                     "".format(ver=release, comp=component))
-    shutil.move("{comp}-{ver}.src".format(comp=component,
-                                          ver=release),
-                extract_to)
-
-
-BUILD_DIR = ("C:/__build" if platform.system == "Windows"
-             else "build")
-INSTALL_DIR = "install"  # This needs to be a relative path
+DEFAULT_CLANG_VERSION = "3.8.0"
+CLANG_CONAN_TOOLS_VERSION = "0.3"
 
 class ClangConan(ConanFile):
     name = "clang"
-    version = os.environ.get("CONAN_VERSION_OVERRIDE", VERSION)
+    version = os.environ.get("CONAN_VERSION_OVERRIDE", DEFAULT_CLANG_VERSION)
     generators = "cmake"
     url = "http://gitlab.com/Manu343726/clang-conan"
     license = "BSD"
@@ -67,6 +27,7 @@ class ClangConan(ConanFile):
 
         self.requires("llvm/" + self._package_reference)
         self.requires("compiler-rt/" + self._package_reference)
+        self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
 
         if self.settings.compiler != "Visual Studio":
             self.requires("libcxx/" + self._package_reference)
@@ -78,14 +39,16 @@ class ClangConan(ConanFile):
             self.options.extra_tools = False
 
     def source(self):
-        download_extract_llvm_component("cfe", ClangConan.version,
+        from common import get_sources
+        get_sources("cfe", ClangConan.version,
                                         "clang")
 
         if self.options.extra_tools:
-            download_extract_llvm_component("clang-tools-extra", ClangConan.version,
+            get_sources("clang-tools-extra", ClangConan.version,
                                             "clang/tools/extra")
 
     def build(self):
+        from common import BUILD_DIR, INSTALL_DIR
         if self.settings.arch == "x86_64" and self.settings.compiler == "Visual Studio":
             cmake = CMake(self, toolset="host=x64")
         else:
@@ -125,56 +88,18 @@ class ClangConan(ConanFile):
 
             cmake.configure(defs={
              "CLANG_INCLUDE_DOCS": False,
-             "CLANG_INCLUDE_TESTS": False,
-             "CLANG_TOOLS_INCLUDE_EXTRA_DOCS": False,
-             "COMPILER_RT_INCLUDE_TESTS": False,
-             "LIBCXX_INCLUDE_TESTS": False,
-             "LIBCXX_INCLUDE_DOCS": False,
-             "LLVM_INCLUDE_TESTS": False,
-             "LLVM_INCLUDE_EXAMPLES": False,
-             "LLVM_INCLUDE_GO_TESTS": False,
-             "LLVM_BUILD_TESTS": False,
              "CMAKE_VERBOSE_MAKEFILE": True,
              "LLVM_TARGETS_TO_BUILD": "X86",
              "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
              "BUILD_SHARED_LIBS": self.options.shared if "shared" in self.options else False,
-             "CLANG_ENABLE_ARCMT": False,
-             "CLANG_TOOL_ARCMT_TEST_BUILD": False,
-             "CLANG_TOOL_CLANG_CHECK_BUILD": False,
-             "CLANG_TOOL_CLANG_FORMAT_BUILD": False,
-             "CLANG_TOOL_CLANG_FUZZER_BUILD": False,
-             "CLANG_TOOL_DIAGTOOL_BUILD": False,
-             "CLANG_TOOL_DRIVER_BUILD": False,
-             "CLANG_TOOL_DIAGTOOL_BUILD": False,
-             "CLANG_TOOL_CLANG_FUZZER_BUILD": False
             }, source_dir="clang")
             cmake.build()
             cmake.install()
 
     def package(self):
-        for component in ["clang"]:
-            install = os.path.join(self.build_folder, INSTALL_DIR)
-            self.copy(pattern="*",
-                      dst="include",
-                      src=os.path.join(install, "include"),
-                      keep_path=True)
-            for pattern in ["*.a", "*.h", "*.so*", "*.lib", "*.dylib", "*.dll", "*.cmake"]:
-                self.copy(pattern=pattern,
-                          dst="lib",
-                          src=os.path.join(install, "lib"),
-                          keep_path=True)
-            self.copy(pattern="*",
-                      dst="share",
-                      src=os.path.join(install, "share"),
-                      keep_path=True)
-            self.copy(pattern="*",
-                      dst="bin",
-                      src=os.path.join(install, "bin"),
-                      keep_path=True)
-            self.copy(pattern="*",
-                      dst="libexec",
-                      src=os.path.join(install, "libexec"),
-                      keep_path=True)
+        import common
+        common.package(self)
+
         self.copy(pattern="*",
                   dst="lib",
                   src="exports/lib",
@@ -192,3 +117,6 @@ class ClangConan(ConanFile):
         self.copy("*.dylib*", dst="bin", src="lib")
         self.copy("*", dst="include/c++/v1", src="include/c++/v1")
         self.copy("*libclang_rt.*", dst="lib", src="lib")
+
+    def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
