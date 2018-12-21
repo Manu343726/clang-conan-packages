@@ -92,6 +92,7 @@ class ClangConan(ConanFile):
              "LLVM_TARGETS_TO_BUILD": "X86",
              "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
              "BUILD_SHARED_LIBS": self.options.shared if "shared" in self.options else False,
+             "LIBCLANG_BUILD_STATIC": not self.options.shared if "shared" in self.options else True,
             }, source_dir="clang")
             cmake.build()
             cmake.install()
@@ -99,10 +100,16 @@ class ClangConan(ConanFile):
     def package(self):
         import common
         common.package(self)
+        exclude_libclang_shared_libs = None
+
+        if "shared" in self.options and not self.options.shared:
+            exclude_libclang_shared_libs = "libclang.*"
+            self.copy("libclang.a", src="lib", dst="lib")
 
         self.copy(pattern="*",
                   dst="lib",
                   src="exports/lib",
+                  excludes=exclude_libclang_shared_libs,
                   keep_path=True)
         self.copy(pattern="*",
                   dst="include",
