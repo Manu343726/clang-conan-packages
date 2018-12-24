@@ -12,7 +12,7 @@ versions:
 
 options:
   shared:
-    - True
+    - False
 
 settings:
   build_type:

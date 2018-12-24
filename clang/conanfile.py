@@ -12,7 +12,7 @@ class ClangConan(ConanFile):
     license = "BSD"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "extra_tools": [True, False]}
-    default_options = "shared=True", "extra_tools=True"
+    default_options = "shared=False", "extra_tools=False"
 
     def configure(self):
         del self.settings.compiler.libcxx
@@ -88,6 +88,8 @@ class ClangConan(ConanFile):
 
             cmake.configure(defs={
              "CLANG_INCLUDE_DOCS": False,
+             "LLVM_INCLUDE_TESTS": False,
+             "CLANG_INCLUDE_TESTS": False,
              "CMAKE_VERBOSE_MAKEFILE": True,
              "LLVM_TARGETS_TO_BUILD": "X86",
              "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
@@ -103,7 +105,8 @@ class ClangConan(ConanFile):
         exclude_libclang_shared_libs = None
 
         if "shared" in self.options and not self.options.shared:
-            exclude_libclang_shared_libs = "libclang.*"
+            self.output.info("Exclude libclang shared library files from packaging")
+            exclude_libclang_shared_libs = "*libclang.*"
             self.copy("libclang.a", src="lib", dst="lib")
 
         self.copy(pattern="*",
@@ -127,3 +130,6 @@ class ClangConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+
+        if self.settings.os == "Linux" and not self.options.shared:
+            self.cpp_info.libs.append("dl")

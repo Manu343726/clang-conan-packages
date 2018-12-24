@@ -1,20 +1,22 @@
 before_script:
 - export PATH=$PATH:$HOME/.local/bin/
 - pip install --user manu343726-conan-tools
+- pip install --user --upgrade conan
 - conan --version
 - conan remote add Manu343726 https://api.bintray.com/conan/manu343726/conan-packages
+- conan remote add bincrafters  https://api.bintray.com/conan/bincrafters/public-conan
 - conan profile new --detect default
+- if [[ ! -z "$manu343726_bintray_key" ]]; then echo remote password variable "manu343726_bintray_key"
+  not empty, ok; else echo remote password variable "manu343726_bintray_key" empty,
+  error && exit 1; fi
 - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
-build_clang_6.0.0_clang60_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_clang60_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_clang60_build_type=Release+shared=True
-  - build_libcxx_6.0.0_clang60_build_type=Release+shared=True
+build_clang_6.0.0_clang60_build_type=Release+shared=False:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    clang/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload clang/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -22,16 +24,13 @@ build_clang_6.0.0_clang60_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_clang_6.0.0_gcc5_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc5_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc5_build_type=Release+shared=True
-  - build_libcxx_6.0.0_gcc5_build_type=Release+shared=True
+build_clang_6.0.0_gcc5_build_type=Release+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    clang/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload clang/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -39,16 +38,13 @@ build_clang_6.0.0_gcc5_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_clang_6.0.0_gcc7_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc7_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc7_build_type=Release+shared=True
-  - build_libcxx_6.0.0_gcc7_build_type=Release+shared=True
+build_clang_6.0.0_gcc7_build_type=Release+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    clang/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload clang/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -56,16 +52,13 @@ build_clang_6.0.0_gcc7_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_clang_6.0.0_gcc8_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc8_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc8_build_type=Release+shared=True
-  - build_libcxx_6.0.0_gcc8_build_type=Release+shared=True
+build_clang_6.0.0_gcc8_build_type=Release+shared=False:
   image: lasote/conangcc8
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True -o clang:shared=True clang Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False -o clang:shared=False clang
+    clang/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload clang/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -87,14 +80,12 @@ build_clang_conan_tools/0.3@Manu343726/testing:
   tags:
   - linux
   - docker
-build_compiler-rt_6.0.0_clang60_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_clang60_build_type=Release+shared=True
+build_compiler-rt_6.0.0_clang60_build_type=Release+shared=False:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt compiler-rt/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/6.0.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
@@ -102,14 +93,12 @@ build_compiler-rt_6.0.0_clang60_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_compiler-rt_6.0.0_gcc5_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc5_build_type=Release+shared=True
+build_compiler-rt_6.0.0_gcc5_build_type=Release+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt compiler-rt/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/6.0.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
@@ -117,14 +106,12 @@ build_compiler-rt_6.0.0_gcc5_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_compiler-rt_6.0.0_gcc7_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc7_build_type=Release+shared=True
+build_compiler-rt_6.0.0_gcc7_build_type=Release+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt compiler-rt/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/6.0.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
@@ -132,14 +119,12 @@ build_compiler-rt_6.0.0_gcc7_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_compiler-rt_6.0.0_gcc8_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc8_build_type=Release+shared=True
+build_compiler-rt_6.0.0_gcc8_build_type=Release+shared=False:
   image: lasote/conangcc8
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True compiler-rt Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False compiler-rt compiler-rt/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload compiler-rt/6.0.0@Manu343726/testing -r Manu343726 --all --force
     --retry 3
@@ -147,15 +132,13 @@ build_compiler-rt_6.0.0_gcc8_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_libcxx_6.0.0_clang60_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_clang60_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_clang60_build_type=Release+shared=True
+build_libcxx_6.0.0_clang60_build_type=Release+shared=False:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx libcxx/6.0.0@Manu343726/testing
+    --build=missing
   - conan remove -b -s -f "*"
   - conan upload libcxx/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -163,15 +146,13 @@ build_libcxx_6.0.0_clang60_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_libcxx_6.0.0_gcc5_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc5_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc5_build_type=Release+shared=True
+build_libcxx_6.0.0_gcc5_build_type=Release+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx libcxx/6.0.0@Manu343726/testing
+    --build=missing
   - conan remove -b -s -f "*"
   - conan upload libcxx/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -179,15 +160,13 @@ build_libcxx_6.0.0_gcc5_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_libcxx_6.0.0_gcc7_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc7_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc7_build_type=Release+shared=True
+build_libcxx_6.0.0_gcc7_build_type=Release+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx libcxx/6.0.0@Manu343726/testing
+    --build=missing
   - conan remove -b -s -f "*"
   - conan upload libcxx/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -195,15 +174,13 @@ build_libcxx_6.0.0_gcc7_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_libcxx_6.0.0_gcc8_build_type=Release+shared=True:
-  dependencies:
-  - build_llvm_6.0.0_gcc8_build_type=Release+shared=True
-  - build_compiler-rt_6.0.0_gcc8_build_type=Release+shared=True
+build_libcxx_6.0.0_gcc8_build_type=Release+shared=False:
   image: lasote/conangcc8
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    -o compiler-rt:shared=True -o libcxx:shared=True libcxx Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    -o compiler-rt:shared=False -o libcxx:shared=False libcxx libcxx/6.0.0@Manu343726/testing
+    --build=missing
   - conan remove -b -s -f "*"
   - conan upload libcxx/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -211,13 +188,12 @@ build_libcxx_6.0.0_gcc8_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_llvm_6.0.0_clang60_build_type=Release+shared=True:
-  dependencies: []
+build_llvm_6.0.0_clang60_build_type=Release+shared=False:
   image: lasote/conanclang60
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    llvm Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    llvm llvm/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload llvm/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -225,13 +201,12 @@ build_llvm_6.0.0_clang60_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_llvm_6.0.0_gcc5_build_type=Release+shared=True:
-  dependencies: []
+build_llvm_6.0.0_gcc5_build_type=Release+shared=False:
   image: lasote/conangcc5
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    llvm Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    llvm llvm/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload llvm/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -239,13 +214,12 @@ build_llvm_6.0.0_gcc5_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_llvm_6.0.0_gcc7_build_type=Release+shared=True:
-  dependencies: []
+build_llvm_6.0.0_gcc7_build_type=Release+shared=False:
   image: lasote/conangcc7
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    llvm Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    llvm llvm/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload llvm/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
@@ -253,13 +227,12 @@ build_llvm_6.0.0_gcc7_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-build_llvm_6.0.0_gcc8_build_type=Release+shared=True:
-  dependencies: []
+build_llvm_6.0.0_gcc8_build_type=Release+shared=False:
   image: lasote/conangcc8
   script:
   - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=True
-    llvm Manu343726/testing
+  - CONAN_VERSION_OVERRIDE=6.0.0 conan create --profile=default -o llvm:shared=False
+    llvm llvm/6.0.0@Manu343726/testing --build=missing
   - conan remove -b -s -f "*"
   - conan upload llvm/6.0.0@Manu343726/testing -r Manu343726 --all --force --retry
     3
