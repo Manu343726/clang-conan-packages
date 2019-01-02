@@ -8,7 +8,7 @@ packages:
   - clang
 
 versions:
-  - 6.0.0
+  - 6.0.1
 
 options:
   shared:
@@ -41,28 +41,8 @@ explicit-jobs:
     script:
       - ./get_jfrog.sh && ./jfrog bt config --interactive=false --user=Manu343726 --key=$manu343726_bintray_key --licenses="MIT"
       - export LLVM_URL=http://releases.llvm.org EXT=.src.tar.xz
-      - export COMPONENT=llvm VERSION=3.8.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=llvm VERSION=3.9.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=llvm VERSION=4.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=llvm VERSION=5.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=llvm VERSION=6.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=compiler-rt VERSION=3.8.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=compiler-rt VERSION=3.9.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=compiler-rt VERSION=4.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=compiler-rt VERSION=5.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=compiler-rt VERSION=6.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=libcxx VERSION=3.8.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=libcxx VERSION=3.9.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=libcxx VERSION=4.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=libcxx VERSION=5.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=libcxx VERSION=6.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=clang VERSION=3.8.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-      - export COMPONENT=clang VERSION=3.9.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-      - export COMPONENT=clang VERSION=4.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-      - export COMPONENT=clang VERSION=5.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-      - export COMPONENT=clang VERSION=6.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-      - export COMPONENT=clang-tools-extra VERSION=3.8.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=clang-tools-extra VERSION=3.9.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=clang-tools-extra VERSION=4.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=clang-tools-extra VERSION=5.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-      - export COMPONENT=clang-tools-extra VERSION=6.0.0 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
+      - export COMPONENT=llvm VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
+      - export COMPONENT=compiler-rt VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
+      - export COMPONENT=libcxx VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
+      - export COMPONENT=clang VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
+      - export COMPONENT=clang-tools-extra VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}

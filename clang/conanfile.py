@@ -1,135 +1,52 @@
-from conans import ConanFile, CMake, tools
-import shutil, os
+from conans import python_requires
+import os
+llvm_common = python_requires('llvm-common/0.0.0@Manu343726/testing')
 
-DEFAULT_CLANG_VERSION = "3.8.0"
-CLANG_CONAN_TOOLS_VERSION = "0.3"
-
-class ClangConan(ConanFile):
+class ClangConan(llvm_common.LLVMPackage):
     name = "clang"
-    version = os.environ.get("CONAN_VERSION_OVERRIDE", DEFAULT_CLANG_VERSION)
-    generators = "cmake"
-    url = "http://gitlab.com/Manu343726/clang-conan"
-    license = "BSD"
-    settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "extra_tools": [True, False]}
-    default_options = "shared=False", "extra_tools=False"
+    version = llvm_common.LLVMPackage.version
+    llvm_requires = ['llvm', 'compiler-rt']
+    llvm_component = 'cfe'
+    custom_cmake_options = {
+        'CLANG_BUILD_TOOLS': True,
+        'LIBCLANG_BUILD_STATIC': True,
+        'LLVM_ENABLE_PIC': False
+    }
+    package_exclude_libs = ['libclang.so*']
 
-    def configure(self):
-        del self.settings.compiler.libcxx
+    def after_package(self):
+        if not self._build_shared:
+            self.copy(
+                pattern='libclang.a',
+                src=os.path.join(self.build_folder, 'lib'),
+                dst='lib',
+                keep_path = False)
 
-        if "shared" in self.options:
-            self.options["llvm"].shared = self.options.shared
-            self.options["compiler-rt"].shared = self.options.shared
-            self.options["libcxx"].shared = self.options.shared
+            clang_targets_file = os.path.join(self._install_lib_dir, 'cmake', 'clang', 'ClangTargets.cmake')
+            clang_target_properties_file = os.path.join(self._install_lib_dir, 'cmake', 'clang', 'ClangTargets-{}.cmake'.format(str(self.settings.build_type).lower()))
 
-    def requirements(self):
-        self._package_reference = "{}@{}/{}".format(self.version, self.user, self.channel)
+            self.output.info('Patching Clang cmake scripts to import static libclang')
 
-        self.requires("llvm/" + self._package_reference)
-        self.requires("compiler-rt/" + self._package_reference)
-        self.requires("clang_conan_tools/{}@{}/{}".format(os.environ.get("CLANG_CONAN_TOOLS_VERSION", CLANG_CONAN_TOOLS_VERSION), self.user, self.channel))
+            if not llvm_common.replace_in_file(clang_targets_file,
+                    r'add_library\(libclang SHARED IMPORTED\)',
+r'''add_library(libclang STATIC IMPORTED)
+set_target_properties(libclang PROPERTIES INTERFACE_LINK_LIBRARIES
+    clangAST
+    clangBasic
+    clangFrontend
+    clangIndex
+    clangLex
+    clangSema
+    clangTooling
+    LLVMCore
+    LLVMSupport)'''):
+                self.output.warn('No SHARED -> STATIC replacement of IMPORT libclang library done!')
 
-        if self.settings.compiler != "Visual Studio":
-            self.requires("libcxx/" + self._package_reference)
+            if not llvm_common.replace_in_file(clang_target_properties_file,
+                r'IMPORTED_SONAME_{} "${{_IMPORT_PREFIX}}/lib/libclang.so((\.[0-9]+)*)"'.format(str(self.settings.build_type).upper()),
+                r''):
+                self.output.warn('No IMPORT_SONAME_<BUILD TYPE> libclang IMPORTED target property found!')
 
-
-    def config_options(self):
-        if self.settings.os == "Windows":
-            del self.options.shared
-            self.options.extra_tools = False
-
-    def source(self):
-        from common import get_sources
-        get_sources("cfe", ClangConan.version,
-                                        "clang")
-
-        if self.options.extra_tools:
-            get_sources("clang-tools-extra", ClangConan.version,
-                                            "clang/tools/extra")
-
-    def build(self):
-        from common import BUILD_DIR, INSTALL_DIR
-        if self.settings.arch == "x86_64" and self.settings.compiler == "Visual Studio":
-            cmake = CMake(self, toolset="host=x64")
-        else:
-            cmake = CMake(self)
-
-        for component in ["clang"]:
-            build = os.path.join(BUILD_DIR, component)
-            install = os.path.join(INSTALL_DIR, component)
-            try:
-                os.makedirs(install)
-            except OSError:
-                pass
-
-            if not os.path.exists(os.path.join(self.build_folder,
-                                               component,
-                                               "CMakeListsOriginal.txt")):
-                shutil.move(os.path.join(self.build_folder,
-                                         component,
-                                         "CMakeLists.txt"),
-                            os.path.join(self.build_folder,
-                                         component,
-                                         "CMakeListsOriginal"))
-                with open(os.path.join(self.build_folder,
-                                       component,
-                                       "CMakeLists.txt"), "w") as cmakelists_file:
-                    cmakelists_file.write("cmake_minimum_required(VERSION 2.8)\n"
-                                          "include(\"${CMAKE_CURRENT_LIST_DIR}/../conanbuildinfo.cmake\")\n"
-                                          "conan_basic_setup()\n"
-                                          "set (CMAKE_PREFIX_PATH \"${CONAN_LLVM_ROOT}\")\n"
-                                          "set (CMAKE_PROGRAM_PATH \"${CONAN_BIN_DIRS_LLVM}\")\n"
-                                          "if (APPLE OR UNIX)\n"
-                                          "  set (CMAKE_EXE_LINKER_FLAGS \"${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,${CONAN_LIB_DIRS}\")\n"
-                                          "  set (CMAKE_SHARED_LINKER_FLAGS \"${CMAKE_SHARED_LINKER_FLAGS} -Wl,-rpath,${CONAN_LIB_DIRS}\")\n"
-                                          "endif ()\n"
-                                          "message (STATUS \"${CMAKE_PROGRAM_PATH}\")\n"
-                                          "include(CMakeListsOriginal)\n")
-
-            cmake.configure(defs={
-             "CLANG_INCLUDE_DOCS": False,
-             "LLVM_INCLUDE_TESTS": False,
-             "CLANG_INCLUDE_TESTS": False,
-             "CMAKE_VERBOSE_MAKEFILE": True,
-             "LLVM_TARGETS_TO_BUILD": "X86",
-             "CMAKE_INSTALL_PREFIX": os.path.join(self.build_folder, INSTALL_DIR),
-             "BUILD_SHARED_LIBS": self.options.shared if "shared" in self.options else False,
-             "LIBCLANG_BUILD_STATIC": not self.options.shared if "shared" in self.options else True,
-            }, source_dir="clang")
-            cmake.build()
-            cmake.install()
-
-    def package(self):
-        import common
-        common.package(self)
-        exclude_libclang_shared_libs = None
-
-        if "shared" in self.options and not self.options.shared:
-            self.output.info("Exclude libclang shared library files from packaging")
-            exclude_libclang_shared_libs = "*libclang.*"
-            self.copy("libclang.a", src="lib", dst="lib")
-
-        self.copy(pattern="*",
-                  dst="lib",
-                  src="exports/lib",
-                  excludes=exclude_libclang_shared_libs,
-                  keep_path=True)
-        self.copy(pattern="*",
-                  dst="include",
-                  src="exports/include",
-                  keep_path=True)
-
-    def conan_info(self):
-        self.info.settings.build_type = "Release"
-
-    def imports(self):
-        self.copy("*.dll", dst="bin", src="bin")
-        self.copy("*.dylib*", dst="bin", src="lib")
-        self.copy("*", dst="include/c++/v1", src="include/c++/v1")
-        self.copy("*libclang_rt.*", dst="lib", src="lib")
-
-    def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
-
-        if self.settings.os == "Linux" and not self.options.shared:
-            self.cpp_info.libs.append("dl")
+            if not llvm_common.replace_in_file(clang_target_properties_file,
+                    r'libclang.so((\.[0-9]+)*)', 'libclang.a'):
+                self.output.warn('No libclang.so.xxx references found!')

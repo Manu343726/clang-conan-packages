@@ -9,7 +9,8 @@ class DefaultNameConan(ConanFile):
     generators = "cmake"
 
     def build(self):
-        cmake = CMake(self)
+        cmake = CMake(self, parallel=False)
+        cmake.verbose = True
         cmake.configure()
         cmake.build()
 
