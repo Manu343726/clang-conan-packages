@@ -2,14 +2,17 @@ from conans import ConanFile, CMake
 import conans.tools
 import os, re
 
-def replace_in_file(file, line_to_search, replace_with):
+def replace_in_file(file, line_to_search, replace_with, conanfile_output = None):
     with open(file, 'r') as input_file:
         input = input_file.read()
 
-    output = re.sub(line_to_search, replace_with, input, flags=re.MULTILINE)
+    output = re.sub(line_to_search, replace_with, input, flags=re.MULTILINE|re.DOTALL)
 
     if input == output:
         return False
+
+    if conanfile_output is not None:
+        conanfile_output.info('Replacing \"{}\" in {} with \"{}\"'.format(line_to_search, file, replace_with))
 
     with open(file, 'w') as output_file:
         output_file.write(output)
@@ -70,6 +73,7 @@ class LLVMPackage(ConanFile):
 
     def configure(self):
         for component in self._llvm_requires:
+            self.output.info("Requiring llvm component dependency '{}' as shared library: {}".format(component, self._build_shared))
             self.options[component].shared = self._build_shared
 
     def source(self):
@@ -77,15 +81,19 @@ class LLVMPackage(ConanFile):
         url = '{}/{}.tar.gz'.format(self.options.sources_repo, self.source_package_name)
         conans.tools.get(url, destination=self.SOURCE_DIR)
 
-        if self._llvm_requires:
-            replace_in_file(self._root_cmake_file, r'project\((.+)\)',
-r'''message(STATUS "Main {} CMakeLists.txt (${{CMAKE_CURRENT_LIST_DIR}}) patched by conan")
+        if not replace_in_file(self._root_cmake_file, r'project\((.+?)\)',
+r'''message(STATUS "Main {0} CMakeLists.txt (${{CMAKE_CURRENT_LIST_DIR}}) patched by conan")
+
 project(\1)
+
+message(STATUS "Loading conan scripts for {0} dependencies...")
 include("${{CMAKE_BINARY_DIR}}/conanbuildinfo.cmake")
+message(STATUS "Doing conan basic setup")
 conan_basic_setup()
 list(APPEND CMAKE_PROGRAM_PATH ${{CONAN_BIN_DIRS}})
-message(STATUS "CMAKE_PROGRAM_PATH: ${{CMAKE_PROGRAM_PATH}}")
-'''.format(self.name))
+message(STATUS "Conan setup done. CMAKE_PROGRAM_PATH: ${{CMAKE_PROGRAM_PATH}}")
+'''.format(self.name), self.output):
+            self.output.warn("Could not patch {} main CMakeLists.txt file to include conan config".format(self._llvm_component))
 
     @property
     def _install_dir(self):

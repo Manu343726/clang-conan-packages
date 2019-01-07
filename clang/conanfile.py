@@ -9,12 +9,18 @@ class ClangConan(llvm_common.LLVMPackage):
     llvm_component = 'cfe'
     custom_cmake_options = {
         'CLANG_BUILD_TOOLS': True,
-        'LIBCLANG_BUILD_STATIC': True,
         'LLVM_ENABLE_PIC': False
     }
     package_exclude_libs = ['libclang.so*']
 
-    def after_package(self):
+    def build(self):
+        self.custom_cmake_options['LIBCLANG_BUILD_STATIC'] = not self._build_shared
+
+        super().build()
+
+    def package(self):
+        super().package()
+
         if not self._build_shared:
             self.copy(
                 pattern='libclang.a',
@@ -50,3 +56,9 @@ set_target_properties(libclang PROPERTIES INTERFACE_LINK_LIBRARIES
             if not llvm_common.replace_in_file(clang_target_properties_file,
                     r'libclang.so((\.[0-9]+)*)', 'libclang.a'):
                 self.output.warn('No libclang.so.xxx references found!')
+
+    def package_info(self):
+        super().package_info()
+
+        if self._build_shared:
+            self.cpp_info.libs.append('libclang')
