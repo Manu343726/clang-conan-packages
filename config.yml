@@ -1,7 +1,4 @@
 packages:
-  # Common recipes
-  - llvm-common
-
   # Full llvm component builds
   - llvm
   - compiler-rt
