@@ -1,0 +1,362 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script type="text/javascript">
+    function showhideclass(id) {
+      var elements = document.getElementsByClassName(id)
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = (elements[i].style.display != 'none') ? 'none' : 'block';
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      .noPrint {
+        display: none;
+      }
+    }
+    .button {
+      background-color: #5555cc;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+    }
+  </style>
+  <div style="width: 100%;">
+    <div id="mynetwork" style="float:left; width: 75%;"></div>
+    <div style="float:right;width:25%;">
+      <div id="details"  style="padding:10;" class="noPrint">Package info: no package selected</div>
+      <button onclick="javascript:showhideclass('controls')" class="button noPrint">Show / hide graph controls.</button>
+      <div id="controls" class="controls" style="padding:5; display:none"></div>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+
+
+  <script type="text/javascript">
+    var nodes = new vis.DataSet([
+      {id: 0, label: 'PROJECT', shape: 'box', color: {background: 'White'}, fulllabel: 'PROJECT'},
+{id: 1, label: 'libclang/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>libclang/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: be89fd6d721a362079c2abd3908794d0235ecafb</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 2, label: 'llvm_x86_codegen/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_x86_codegen/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 6b35fe14d4989f5ac4741e124d0571f2fcf5211f</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 3, label: 'llvm_selection_dag/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_selection_dag/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: fb598f01a2dfdfd2cacc953fd0e831a44a46d109</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 4, label: 'llvm_global_isel/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_global_isel/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 5957ba85b7eb415355263fa483b2c8081ade8d14</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 5, label: 'llvm_asm_printer/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_asm_printer/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: d67042731485908eb94f04782a15119dd2d99053</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 6, label: 'clang_tooling/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_tooling/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 819ac63d9c16b95f37615d4981f3632c11c3feb5</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 7, label: 'clang_index/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_index/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: d2fff1e934ec07978c632f8c97b7297e3b8f8a71</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 8, label: 'clang_arc_migrate/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_arc_migrate/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 54170f266408a3969e8b658ac5e12669b8c61483</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 9, label: 'llvm_codegen/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_codegen/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 279578578ddfe42bd977edc0b6c835c63087d79a</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 10, label: 'clang_frontend/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_frontend/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 25b95ef02ca3cca762547334a05bc633c03a00a3</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 11, label: 'llvm_scalar_opts/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_scalar_opts/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: a2aa219e222ecf3b8f5e713d6d65fd2d5881fcfa</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 12, label: 'clang_static_analyzer_checkers/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_static_analyzer_checkers/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 89ab2762428b914a88d943048f07cae186d6096b</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 13, label: 'clang_serialization/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_serialization/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 22413e092640656d7b280be3779daebeaf0509bc</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 14, label: 'clang_parse/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_parse/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: f5c0e527208ee7bcf7a3cb775953ce094d6acc1f</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 15, label: 'llvm_instcombine/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_instcombine/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: f21bc8381519d1cd13c52ae39d606ecc91238733</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 16, label: 'clang_static_analyzer_core/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_static_analyzer_core/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: b6fc4fb192d18b3d091620bc6c920d38caa67e94</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 17, label: 'clang_sema/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_sema/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 55c9b8ba65ac3a98a60d393898e699a3f79dd8f1</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 18, label: 'clang_format/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_format/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: c150ee8efaf4253edb8c41176b10559b1fa374e0</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 19, label: 'llvm_transform_utils/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_transform_utils/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 47e9f5932e48ecfb9ef5e56799a2f6ce709a1dfa</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 20, label: 'llvm_target/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_target/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 88fcc31c8270eb2727b65f9b6c471cbb43411ff0</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 21, label: 'llvm_bit_writer/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_bit_writer/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: c8cbb0b88611544e8cec5f85eb6435bc728f8aeb</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 22, label: 'clang_tooling_core/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_tooling_core/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: cc8abb8f7b003b38f350da919cd851d261fde67e</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 23, label: 'clang_edit/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_edit/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 31bf7854e10f212081faaa5410635dfd17e4e7e1</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 24, label: 'clang_ast_matchers/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_ast_matchers/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 64b190c24c529d17bdc73ed88a5f726058d9f645</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 25, label: 'clang_analysis/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_analysis/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 31bf7854e10f212081faaa5410635dfd17e4e7e1</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 26, label: 'llvm_analysis/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_analysis/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 7a64089ee77e947399c1bca2cc1c8b22dc7e865c</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 27, label: 'clang_rewrite/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_rewrite/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: b739afb2d1d3c0ad2fd9b2c1785c8f3531088d0c</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 28, label: 'clang_ast/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_ast/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 6fe4ba2494c68fc566350ca1ae102b8d471412bc</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 29, label: 'llvm_object/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_object/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: b4a7bda4027401ca6da464b3a304474127cd596f</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 30, label: 'clang_lex/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_lex/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 37a76503e08bad691f5c047da8c64a3dcd948651</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 31, label: 'clang_driver/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_driver/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 1f144070e0dfe911cf52ce6a758ba9a41adc2e4e</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 32, label: 'llvm_x86_desc/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_x86_desc/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 7dc536441d0b2bb30835c652677e6a4057f5b3fb</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 33, label: 'llvm_profile_data/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_profile_data/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: a63d986a5244dc87484c4ed86c20abe10109d0c3</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 34, label: 'llvm_bit_reader/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_bit_reader/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: a63d986a5244dc87484c4ed86c20abe10109d0c3</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 35, label: 'clang_basic/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_basic/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3db70b00000d5f593f6609d236d886e62d5dd558</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 36, label: 'llvm_x86_asm_printer/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_x86_asm_printer/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 39f36c628fdf762358f4a6d941586b556c81debc</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 37, label: 'llvm_mc_parser/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_mc_parser/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: fb94fd6dc99446a876f602b7bd870149c668a62b</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 38, label: 'llvm_mc_disassembler/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_mc_disassembler/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: fb94fd6dc99446a876f602b7bd870149c668a62b</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 39, label: 'llvm_core/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_core/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: c16c8773a5864729901b5d5eee87fb5e9d868160</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 40, label: 'llvm_x86_utils/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_x86_utils/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 41, label: 'llvm_x86_info/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_x86_info/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 42, label: 'llvm_option/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_option/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 43, label: 'llvm_mc/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_mc/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 44, label: 'llvm_debuginfo_codeview/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_debuginfo_codeview/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 45, label: 'llvm_binary_format/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_binary_format/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 46, label: 'llvm_support/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_support/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 664adbf5407c33b0cb930380271a0d269a88bece</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'}
+    ]);
+    var edges = new vis.DataSet([
+     { from: 1, to: 28 },
+{ from: 1, to: 35 },
+{ from: 1, to: 10 },
+{ from: 1, to: 7 },
+{ from: 1, to: 30 },
+{ from: 1, to: 17 },
+{ from: 1, to: 6 },
+{ from: 1, to: 8 },
+{ from: 1, to: 2 },
+{ from: 1, to: 36 },
+{ from: 1, to: 32 },
+{ from: 1, to: 41 },
+{ from: 1, to: 46 },
+{ from: 9, to: 26 },
+{ from: 9, to: 34 },
+{ from: 9, to: 21 },
+{ from: 9, to: 39 },
+{ from: 9, to: 43 },
+{ from: 9, to: 33 },
+{ from: 9, to: 11 },
+{ from: 9, to: 46 },
+{ from: 9, to: 20 },
+{ from: 9, to: 19 },
+{ from: 14, to: 28 },
+{ from: 14, to: 35 },
+{ from: 14, to: 30 },
+{ from: 14, to: 17 },
+{ from: 14, to: 43 },
+{ from: 14, to: 37 },
+{ from: 14, to: 46 },
+{ from: 3, to: 26 },
+{ from: 3, to: 9 },
+{ from: 3, to: 39 },
+{ from: 3, to: 43 },
+{ from: 3, to: 46 },
+{ from: 3, to: 20 },
+{ from: 3, to: 19 },
+{ from: 4, to: 26 },
+{ from: 4, to: 9 },
+{ from: 4, to: 39 },
+{ from: 4, to: 43 },
+{ from: 4, to: 46 },
+{ from: 4, to: 20 },
+{ from: 8, to: 28 },
+{ from: 8, to: 25 },
+{ from: 8, to: 35 },
+{ from: 8, to: 23 },
+{ from: 8, to: 10 },
+{ from: 8, to: 30 },
+{ from: 8, to: 27 },
+{ from: 8, to: 17 },
+{ from: 8, to: 13 },
+{ from: 8, to: 12 },
+{ from: 8, to: 46 },
+{ from: 28, to: 35 },
+{ from: 28, to: 30 },
+{ from: 25, to: 28 },
+{ from: 25, to: 35 },
+{ from: 25, to: 30 },
+{ from: 25, to: 46 },
+{ from: 40, to: 46 },
+{ from: 30, to: 35 },
+{ from: 16, to: 28 },
+{ from: 16, to: 24 },
+{ from: 16, to: 25 },
+{ from: 16, to: 35 },
+{ from: 16, to: 30 },
+{ from: 16, to: 27 },
+{ from: 16, to: 46 },
+{ from: 43, to: 46 },
+{ from: 33, to: 39 },
+{ from: 33, to: 46 },
+{ from: 31, to: 35 },
+{ from: 31, to: 42 },
+{ from: 7, to: 28 },
+{ from: 7, to: 35 },
+{ from: 7, to: 18 },
+{ from: 7, to: 10 },
+{ from: 7, to: 27 },
+{ from: 7, to: 13 },
+{ from: 7, to: 22 },
+{ from: 7, to: 39 },
+{ from: 7, to: 46 },
+{ from: 23, to: 28 },
+{ from: 23, to: 35 },
+{ from: 23, to: 30 },
+{ from: 23, to: 46 },
+{ from: 37, to: 43 },
+{ from: 37, to: 46 },
+{ from: 18, to: 35 },
+{ from: 18, to: 30 },
+{ from: 18, to: 22 },
+{ from: 18, to: 46 },
+{ from: 34, to: 39 },
+{ from: 34, to: 46 },
+{ from: 29, to: 45 },
+{ from: 29, to: 34 },
+{ from: 29, to: 39 },
+{ from: 29, to: 43 },
+{ from: 29, to: 37 },
+{ from: 29, to: 46 },
+{ from: 41, to: 46 },
+{ from: 36, to: 43 },
+{ from: 36, to: 46 },
+{ from: 36, to: 40 },
+{ from: 32, to: 43 },
+{ from: 32, to: 38 },
+{ from: 32, to: 46 },
+{ from: 32, to: 36 },
+{ from: 32, to: 41 },
+{ from: 45, to: 46 },
+{ from: 11, to: 26 },
+{ from: 11, to: 39 },
+{ from: 11, to: 15 },
+{ from: 11, to: 46 },
+{ from: 11, to: 19 },
+{ from: 20, to: 26 },
+{ from: 20, to: 39 },
+{ from: 20, to: 43 },
+{ from: 20, to: 46 },
+{ from: 22, to: 28 },
+{ from: 22, to: 35 },
+{ from: 22, to: 30 },
+{ from: 22, to: 27 },
+{ from: 22, to: 46 },
+{ from: 39, to: 45 },
+{ from: 6, to: 28 },
+{ from: 6, to: 24 },
+{ from: 6, to: 35 },
+{ from: 6, to: 31 },
+{ from: 6, to: 18 },
+{ from: 6, to: 10 },
+{ from: 6, to: 30 },
+{ from: 6, to: 27 },
+{ from: 6, to: 22 },
+{ from: 6, to: 42 },
+{ from: 6, to: 46 },
+{ from: 38, to: 43 },
+{ from: 38, to: 46 },
+{ from: 42, to: 46 },
+{ from: 44, to: 46 },
+{ from: 0, to: 1 },
+{ from: 27, to: 35 },
+{ from: 27, to: 30 },
+{ from: 27, to: 46 },
+{ from: 17, to: 28 },
+{ from: 17, to: 25 },
+{ from: 17, to: 35 },
+{ from: 17, to: 23 },
+{ from: 17, to: 30 },
+{ from: 17, to: 46 },
+{ from: 5, to: 26 },
+{ from: 5, to: 45 },
+{ from: 5, to: 9 },
+{ from: 5, to: 39 },
+{ from: 5, to: 44 },
+{ from: 5, to: 43 },
+{ from: 5, to: 37 },
+{ from: 5, to: 46 },
+{ from: 5, to: 20 },
+{ from: 21, to: 26 },
+{ from: 21, to: 39 },
+{ from: 21, to: 43 },
+{ from: 21, to: 29 },
+{ from: 21, to: 46 },
+{ from: 15, to: 26 },
+{ from: 15, to: 39 },
+{ from: 15, to: 46 },
+{ from: 15, to: 19 },
+{ from: 10, to: 28 },
+{ from: 10, to: 35 },
+{ from: 10, to: 31 },
+{ from: 10, to: 23 },
+{ from: 10, to: 30 },
+{ from: 10, to: 14 },
+{ from: 10, to: 17 },
+{ from: 10, to: 13 },
+{ from: 10, to: 34 },
+{ from: 10, to: 42 },
+{ from: 10, to: 33 },
+{ from: 10, to: 46 },
+{ from: 13, to: 28 },
+{ from: 13, to: 35 },
+{ from: 13, to: 30 },
+{ from: 13, to: 17 },
+{ from: 13, to: 34 },
+{ from: 13, to: 46 },
+{ from: 24, to: 28 },
+{ from: 24, to: 35 },
+{ from: 24, to: 46 },
+{ from: 19, to: 26 },
+{ from: 19, to: 39 },
+{ from: 19, to: 46 },
+{ from: 12, to: 28 },
+{ from: 12, to: 24 },
+{ from: 12, to: 25 },
+{ from: 12, to: 35 },
+{ from: 12, to: 30 },
+{ from: 12, to: 16 },
+{ from: 12, to: 46 },
+{ from: 35, to: 39 },
+{ from: 35, to: 43 },
+{ from: 26, to: 45 },
+{ from: 26, to: 39 },
+{ from: 26, to: 29 },
+{ from: 26, to: 33 },
+{ from: 26, to: 46 },
+{ from: 2, to: 26 },
+{ from: 2, to: 5 },
+{ from: 2, to: 9 },
+{ from: 2, to: 39 },
+{ from: 2, to: 4 },
+{ from: 2, to: 43 },
+{ from: 2, to: 3 },
+{ from: 2, to: 46 },
+{ from: 2, to: 36 },
+{ from: 2, to: 32 },
+{ from: 2, to: 41 }
+    ]);
+    var container = document.getElementById('mynetwork');
+    var controls = document.getElementById('controls');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      autoResize: true,
+      locale: 'en',
+      edges: {
+        arrows: { to: {enabled: true}},
+        smooth: { enabled: false}
+      },
+      nodes: {
+          font: {'face': 'monospace', 'align': 'left'}
+      },
+      layout: {
+        "hierarchical": {
+          "enabled": true,
+          "sortMethod": "directed",
+          "direction": "UD",
+          nodeSpacing: 200
+        }
+      },
+      physics: {
+          enabled: false,
+      },
+      configure: {
+        enabled: true,
+        filter: 'layout physics',
+        showButton: false,
+        container: controls
+      }
+    };
+    var network = new vis.Network(container, data, options);
+    network.on('click', function (properties) {
+                           var ids = properties.nodes;
+                           var clickedNodes = nodes.get(ids);
+                           var control = document.getElementById("details");
+                           if(clickedNodes[0])
+                              control.innerHTML = clickedNodes[0].fulllabel;
+                           else
+                              control.innerHTML = "<b>Package info</b>: No package selected";
+                         });
+  </script>
+</body>
+</html>

@@ -1,11 +1,62 @@
-common-recipe-scripts:
-  - clang_conan_tools/0.3
-
 packages:
+  # Common recipes
+  - llvm-common
+
+  # Full llvm component builds
   - llvm
   - compiler-rt
-  - libcxx
   - clang
+
+  # LLVM component meta-packages
+  - llvm_support
+  - llvm_binary_format
+  - llvm_core
+  - llvm_mc
+  - llvm_bit_reader
+  - llvm_mc_parser
+  - llvm_object
+  - llvm_profile_data
+  - llvm_analysis
+  - llvm_transform_utils
+  - llvm_instcombine
+  - llvm_bit_writer
+  - llvm_option
+  - llvm_scalar_opts
+  - llvm_target
+  - llvm_x86_utils
+  - llvm_codegen
+  - llvm_debuginfo_codeview
+  - llvm_mc_disassembler
+  - llvm_x86_asm_printer
+  - llvm_x86_info
+  - llvm_asm_printer
+  - llvm_global_isel
+  - llvm_selection_dag
+  - llvm_x86_desc
+  - llvm_x86_asm_parser
+  - llvm_x86_codegen
+
+  # Clang component meta-packages
+  - clang_basic
+  - clang_lex
+  - clang_ast
+  - clang_analysis
+  - clang_edit
+  - clang_ast_matchers
+  - clang_rewrite
+  - clang_sema
+  - clang_driver
+  - clang_parse
+  - clang_serialization
+  - clang_static_analyzer_core
+  - clang_tooling_core
+  - clang_format
+  - clang_frontend
+  - clang_static_analyzer_checkers
+  - clang_arc_migrate
+  - clang_index
+  - clang_tooling
+  - libclang
 
 versions:
   - 6.0.1
@@ -13,6 +64,7 @@ versions:
 options:
   shared:
     - False
+    - True
 
 settings:
   build_type:
@@ -29,10 +81,7 @@ remote:
   password: manu343726_bintray_key
 
 compilers:
-  - gcc5
-  - gcc7
   - gcc8
-  - clang60
 
 explicit-jobs:
   deploy-sources-to-bintray:

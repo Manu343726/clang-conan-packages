@@ -2,16 +2,15 @@ from conans import python_requires
 import os
 llvm_common = python_requires('llvm-common/0.0.0@Manu343726/testing')
 
-class ClangConan(llvm_common.LLVMPackage):
+class ClangConan(llvm_common.LLVMComponentPackage):
     name = "clang"
-    version = llvm_common.LLVMPackage.version
+    version = llvm_common.LLVMComponentPackage.version
     llvm_requires = ['llvm', 'compiler-rt']
     llvm_component = 'cfe'
     custom_cmake_options = {
         'CLANG_BUILD_TOOLS': True,
         'LLVM_ENABLE_PIC': False
     }
-    package_exclude_libs = ['libclang.so*']
 
     def build(self):
         self.custom_cmake_options['LIBCLANG_BUILD_STATIC'] = not self._build_shared
@@ -19,6 +18,9 @@ class ClangConan(llvm_common.LLVMPackage):
         super().build()
 
     def package(self):
+        if not self._build_shared:
+            self.package_exclude_libs = ['libclang.so*']
+
         super().package()
 
         if not self._build_shared:
@@ -56,9 +58,3 @@ set_target_properties(libclang PROPERTIES INTERFACE_LINK_LIBRARIES
             if not llvm_common.replace_in_file(clang_target_properties_file,
                     r'libclang.so((\.[0-9]+)*)', 'libclang.a'):
                 self.output.warn('No libclang.so.xxx references found!')
-
-    def package_info(self):
-        super().package_info()
-
-        if self._build_shared:
-            self.cpp_info.libs.append('libclang')

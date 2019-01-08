@@ -1,0 +1,114 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script type="text/javascript">
+    function showhideclass(id) {
+      var elements = document.getElementsByClassName(id)
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].style.display = (elements[i].style.display != 'none') ? 'none' : 'block';
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      .noPrint {
+        display: none;
+      }
+    }
+    .button {
+      background-color: #5555cc;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+    }
+  </style>
+  <div style="width: 100%;">
+    <div id="mynetwork" style="float:left; width: 75%;"></div>
+    <div style="float:right;width:25%;">
+      <div id="details"  style="padding:10;" class="noPrint">Package info: no package selected</div>
+      <button onclick="javascript:showhideclass('controls')" class="button noPrint">Show / hide graph controls.</button>
+      <div id="controls" class="controls" style="padding:5; display:none"></div>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+
+
+
+  <script type="text/javascript">
+    var nodes = new vis.DataSet([
+      {id: 0, label: 'PROJECT', shape: 'box', color: {background: 'White'}, fulllabel: 'PROJECT'},
+{id: 1, label: 'clang_ast/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_ast/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 6fe4ba2494c68fc566350ca1ae102b8d471412bc</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 2, label: 'clang_lex/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_lex/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 37a76503e08bad691f5c047da8c64a3dcd948651</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 3, label: 'clang_basic/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>clang_basic/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3db70b00000d5f593f6609d236d886e62d5dd558</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 4, label: 'llvm_core/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_core/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: c16c8773a5864729901b5d5eee87fb5e9d868160</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 5, label: 'llvm_mc/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_mc/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 6, label: 'llvm_binary_format/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_binary_format/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 3df05e44ae2407fea37c47809a7af722f30b6ac2</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'},
+{id: 7, label: 'llvm_support/6.0.1', shape: 'box', color: {background: 'SkyBlue'}, fulllabel: '<h3>llvm_support/6.0.1@Manu343726/testing</h3><ul><li><b>id</b>: 664adbf5407c33b0cb930380271a0d269a88bece</li><li><b>url</b>: <a href="https://gitlab.com/Manu343726/clang-conan-packages">https://gitlab.com/Manu343726/clang-conan-packages</a></li><li><b>homepage</b>: <a href="None">None</a></li><li><b>license</b>: BSD</li><li><b>topics</b>: None</li><ul>'}
+    ]);
+    var edges = new vis.DataSet([
+     { from: 4, to: 6 },
+{ from: 5, to: 7 },
+{ from: 3, to: 4 },
+{ from: 3, to: 5 },
+{ from: 1, to: 3 },
+{ from: 1, to: 2 },
+{ from: 6, to: 7 },
+{ from: 2, to: 3 },
+{ from: 0, to: 1 }
+    ]);
+    var container = document.getElementById('mynetwork');
+    var controls = document.getElementById('controls');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      autoResize: true,
+      locale: 'en',
+      edges: {
+        arrows: { to: {enabled: true}},
+        smooth: { enabled: false}
+      },
+      nodes: {
+          font: {'face': 'monospace', 'align': 'left'}
+      },
+      layout: {
+        "hierarchical": {
+          "enabled": true,
+          "sortMethod": "directed",
+          "direction": "UD",
+          nodeSpacing: 200
+        }
+      },
+      physics: {
+          enabled: false,
+      },
+      configure: {
+        enabled: true,
+        filter: 'layout physics',
+        showButton: false,
+        container: controls
+      }
+    };
+    var network = new vis.Network(container, data, options);
+    network.on('click', function (properties) {
+                           var ids = properties.nodes;
+                           var clickedNodes = nodes.get(ids);
+                           var control = document.getElementById("details");
+                           if(clickedNodes[0])
+                              control.innerHTML = clickedNodes[0].fulllabel;
+                           else
+                              control.innerHTML = "<b>Package info</b>: No package selected";
+                         });
+  </script>
+</body>
+</html>

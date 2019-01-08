@@ -1,6 +1,8 @@
 from conans import ConanFile
 
 from llvmpackage import *
+from llvmcomponentpackage import *
+from llvmmodulepackage import *
 
 class LLVMCommon(ConanFile):
     name = 'llvm-common'
