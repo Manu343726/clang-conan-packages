@@ -2187,24 +2187,7 @@ build_llvm_x86_utils_6.0.1_gcc8_build_type=Release+shared=True:
   tags:
   - linux
   - docker
-deploy-sources-to-bintray:
-  image: lasote/conangcc5
-  script:
-  - ./get_jfrog.sh && ./jfrog bt config --interactive=false --user=Manu343726 --key=$manu343726_bintray_key
-    --licenses="MIT"
-  - export LLVM_URL=http://releases.llvm.org EXT=.src.tar.xz
-  - export COMPONENT=llvm VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-  - export COMPONENT=compiler-rt VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION
-    ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-  - export COMPONENT=libcxx VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION
-    ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-  - export COMPONENT=clang VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT $VERSION
-    ${LLVM_URL}/${VERSION}/cfe-${VERSION}${EXT}
-  - export COMPONENT=clang-tools-extra VERSION=6.0.1 && ./llvm-sources.sh $COMPONENT
-    $VERSION ${LLVM_URL}/${VERSION}/${COMPONENT}-${VERSION}${EXT}
-  stage: sources
 stages:
-- sources
 - llvm-common
 - llvm
 - compiler-rt
