@@ -8,5 +8,4 @@ class LLVMSelectionDag(common.LLVMModulePackage):
     name = 'llvm_selection_dag'
     llvm_component = 'llvm'
     llvm_module = 'SelectionDAG'
-    llvm_requires = ['llvm_analysis', 'llvm_codegen', 'llvm_core', 'llvm_mc', 'llvm_support', 'llvm_target', 'llvm_transform_utils']
-    include_dirs = []
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_codegen', 'llvm_core', 'llvm_mc', 'llvm_support', 'llvm_target', 'llvm_transform_utils']

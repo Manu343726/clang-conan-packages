@@ -8,5 +8,4 @@ class LLVMDebugInfoMSF(common.LLVMModulePackage):
     name = 'llvm_debuginfo_msf'
     llvm_component = 'llvm'
     llvm_module = 'DebugInfoMSF'
-    llvm_requires = ['llvm_support', 'llvm_demangle']
-    include_dirs = [os.path.join('llvm', 'DebugInfo', 'MSF')]
+    llvm_requires = ['llvm_headers', 'llvm_support', 'llvm_demangle']

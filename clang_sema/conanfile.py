@@ -7,4 +7,4 @@ class ClangSema(common.LLVMModulePackage):
     name = 'clang_sema'
     llvm_component = 'clang'
     llvm_module = 'Sema'
-    llvm_requires = ['clang_ast', 'clang_analysis', 'clang_basic', 'clang_edit', 'clang_lex', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_analysis', 'clang_basic', 'clang_edit', 'clang_lex', 'llvm_support']

@@ -8,5 +8,4 @@ class LLVMBitReader(common.LLVMModulePackage):
     name = 'llvm_bit_reader'
     llvm_component = 'llvm'
     llvm_module = 'BitReader'
-    llvm_requires = ['llvm_core', 'llvm_support']
-    include_dirs = [os.path.join('llvm', 'Bitcode')]
+    llvm_requires = ['llvm_headers', 'llvm_core', 'llvm_support']

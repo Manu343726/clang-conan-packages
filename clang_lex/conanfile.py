@@ -7,4 +7,4 @@ class ClangLex(common.LLVMModulePackage):
     name = 'clang_lex'
     llvm_component = 'clang'
     llvm_module = 'Lex'
-    llvm_requires = ['clang_basic']
+    llvm_requires = ['clang_headers', 'clang_basic']

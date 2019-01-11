@@ -8,5 +8,4 @@ class ClangToolingCore(common.LLVMModulePackage):
     name = 'clang_tooling_core'
     llvm_component = 'clang'
     llvm_module = 'ToolingCore'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_lex', 'clang_rewrite', 'llvm_support']
-    include_dirs = [os.path.join('clang', 'Tooling', 'Core')]
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_lex', 'clang_rewrite', 'llvm_support']

@@ -8,5 +8,4 @@ class LLVMInstCombine(common.LLVMModulePackage):
     name = 'llvm_instcombine'
     llvm_component = 'llvm'
     llvm_module = 'InstCombine'
-    llvm_requires = ['llvm_analysis', 'llvm_core', 'llvm_support', 'llvm_transform_utils']
-    include_dirs = [os.path.join('llvm', 'Transforms', 'InstCombine')]
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_core', 'llvm_support', 'llvm_transform_utils']

@@ -7,4 +7,4 @@ class LLVMX86AsmPrinter(common.LLVMModulePackage):
     name = 'llvm_x86_asm_printer'
     llvm_component = 'llvm'
     llvm_module = 'X86AsmPrinter'
-    llvm_requires = ['llvm_mc', 'llvm_support', 'llvm_x86_utils']
+    llvm_requires = ['llvm_headers', 'llvm_mc', 'llvm_support', 'llvm_x86_utils']

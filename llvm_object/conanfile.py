@@ -8,4 +8,4 @@ class LLVMObject(common.LLVMModulePackage):
     name = 'llvm_object'
     llvm_component = 'llvm'
     llvm_module = 'Object'
-    llvm_requires = ['llvm_binary_format', 'llvm_bit_reader', 'llvm_core', 'llvm_mc', 'llvm_mc_parser', 'llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_binary_format', 'llvm_bit_reader', 'llvm_core', 'llvm_mc', 'llvm_mc_parser', 'llvm_support']

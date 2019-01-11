@@ -7,4 +7,4 @@ class ClangASTMatchers(common.LLVMModulePackage):
     name = 'clang_ast_matchers'
     llvm_component = 'clang'
     llvm_module = 'ASTMatchers'
-    llvm_requires = ['clang_ast', 'clang_basic', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'llvm_support']

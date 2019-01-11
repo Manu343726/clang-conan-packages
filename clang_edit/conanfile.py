@@ -7,4 +7,4 @@ class ClangEdit(common.LLVMModulePackage):
     name = 'clang_edit'
     llvm_component = 'clang'
     llvm_module = 'Edit'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_lex', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_lex', 'llvm_support']

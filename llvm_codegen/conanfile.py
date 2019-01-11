@@ -7,4 +7,4 @@ class LLVMCodegen(common.LLVMModulePackage):
     name = 'llvm_codegen'
     llvm_component = 'llvm'
     llvm_module = 'CodeGen'
-    llvm_requires = ['llvm_analysis', 'llvm_bit_reader', 'llvm_bit_writer', 'llvm_core', 'llvm_mc', 'llvm_profile_data', 'llvm_scalar_opts', 'llvm_support', 'llvm_target', 'llvm_transform_utils']
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_bit_reader', 'llvm_bit_writer', 'llvm_core', 'llvm_mc', 'llvm_profile_data', 'llvm_scalar_opts', 'llvm_support', 'llvm_target', 'llvm_transform_utils']

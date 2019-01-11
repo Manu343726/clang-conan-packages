@@ -7,4 +7,4 @@ class ClangRewrite(common.LLVMModulePackage):
     name = 'clang_rewrite'
     llvm_component = 'clang'
     llvm_module = 'Rewrite'
-    llvm_requires = ['clang_basic', 'clang_lex', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_basic', 'clang_lex', 'llvm_support']

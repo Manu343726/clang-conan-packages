@@ -7,5 +7,4 @@ class LLVMAsmPrinter(common.LLVMModulePackage):
     name = 'llvm_asm_printer'
     llvm_component = 'llvm'
     llvm_module = 'AsmPrinter'
-    llvm_requires = ['llvm_analysis', 'llvm_binary_format', 'llvm_codegen', 'llvm_core', 'llvm_debuginfo_codeview', 'llvm_debuginfo_msf', 'llvm_mc', 'llvm_mc_parser', 'llvm_support', 'llvm_target']
-    include_dirs = []
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_binary_format', 'llvm_codegen', 'llvm_core', 'llvm_debuginfo_codeview', 'llvm_debuginfo_msf', 'llvm_mc', 'llvm_mc_parser', 'llvm_support', 'llvm_target']

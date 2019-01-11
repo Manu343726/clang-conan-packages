@@ -7,4 +7,4 @@ class LLVMTarget(common.LLVMModulePackage):
     name = 'llvm_target'
     llvm_component = 'llvm'
     llvm_module = 'Target'
-    llvm_requires = ['llvm_analysis', 'llvm_core', 'llvm_mc', 'llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_core', 'llvm_mc', 'llvm_support']

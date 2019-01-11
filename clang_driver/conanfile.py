@@ -7,4 +7,4 @@ class ClangDriver(common.LLVMModulePackage):
     name = 'clang_driver'
     llvm_component = 'clang'
     llvm_module = 'Driver'
-    llvm_requires = ['clang_basic', 'llvm_option']
+    llvm_requires = ['clang_headers', 'clang_basic', 'llvm_option']

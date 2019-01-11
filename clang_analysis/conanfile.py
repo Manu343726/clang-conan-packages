@@ -7,4 +7,4 @@ class ClangAnalysis(common.LLVMModulePackage):
     name = 'clang_analysis'
     llvm_component = 'clang'
     llvm_module = 'Analysis'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_lex', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_lex', 'llvm_support']

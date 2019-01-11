@@ -8,5 +8,4 @@ class LLVMBitWriter(common.LLVMModulePackage):
     name = 'llvm_bit_writer'
     llvm_component = 'llvm'
     llvm_module = 'BitWriter'
-    llvm_requires = ['llvm_analysis', 'llvm_core', 'llvm_mc', 'llvm_object', 'llvm_support']
-    include_dirs = [os.path.join('llvm', 'Bitcode')]
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_core', 'llvm_mc', 'llvm_object', 'llvm_support']

@@ -7,7 +7,7 @@ class LLVMSupport(common.LLVMModulePackage):
     name = 'llvm_support'
     llvm_component = 'llvm'
     llvm_module = 'Support'
-    llvm_requires = ['llvm_demangle']
+    llvm_requires = ['llvm_headers', 'llvm_demangle']
 
     def package_info(self):
         super().package_info()

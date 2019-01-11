@@ -8,3 +8,4 @@ class LLVMDemangle(common.LLVMModulePackage):
     name = 'llvm_demangle'
     llvm_component = 'llvm'
     llvm_module = 'Demangle'
+    llvm_requires = ['llvm_headers']

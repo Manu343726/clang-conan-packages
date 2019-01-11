@@ -8,5 +8,4 @@ class LLVMScalarOpts(common.LLVMModulePackage):
     name = 'llvm_scalar_opts'
     llvm_component = 'llvm'
     llvm_module = 'ScalarOpts'
-    llvm_requires = ['llvm_analysis', 'llvm_core', 'llvm_instcombine', 'llvm_support', 'llvm_transform_utils']
-    include_dirs = [os.path.join('llvm', 'Transforms', 'Scalar')]
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_core', 'llvm_instcombine', 'llvm_support', 'llvm_transform_utils']

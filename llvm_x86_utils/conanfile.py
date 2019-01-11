@@ -7,4 +7,4 @@ class LLVMX86Utils(common.LLVMModulePackage):
     name = 'llvm_x86_utils'
     llvm_component = 'llvm'
     llvm_module = 'X86Utils'
-    llvm_requires = ['llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_support']

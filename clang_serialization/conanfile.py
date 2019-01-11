@@ -7,4 +7,4 @@ class ClangSerialization(common.LLVMModulePackage):
     name = 'clang_serialization'
     llvm_component = 'clang'
     llvm_module = 'Serialization'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_lex', 'clang_sema', 'llvm_bit_reader', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_lex', 'clang_sema', 'llvm_bit_reader', 'llvm_support']

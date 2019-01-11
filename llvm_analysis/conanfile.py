@@ -7,4 +7,4 @@ class LLVMAnalysis(common.LLVMModulePackage):
     name = 'llvm_analysis'
     llvm_component = 'llvm'
     llvm_module = 'Analysis'
-    llvm_requires = ['llvm_binary_format', 'llvm_core', 'llvm_object', 'llvm_profile_data', 'llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_binary_format', 'llvm_core', 'llvm_object', 'llvm_profile_data', 'llvm_support']

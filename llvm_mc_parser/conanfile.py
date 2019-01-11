@@ -8,5 +8,4 @@ class LLVMMCParser(common.LLVMModulePackage):
     name = 'llvm_mc_parser'
     llvm_component = 'llvm'
     llvm_module = 'MCParser'
-    llvm_requires = ['llvm_mc', 'llvm_support']
-    include_dirs = [os.path.join('llvm', 'MC', 'MCParser')]
+    llvm_requires = ['llvm_headers', 'llvm_mc', 'llvm_support']

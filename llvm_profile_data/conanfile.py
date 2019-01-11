@@ -7,4 +7,4 @@ class LLVMProfileData(common.LLVMModulePackage):
     name = 'llvm_profile_data'
     llvm_component = 'llvm'
     llvm_module = 'ProfileData'
-    llvm_requires = ['llvm_core', 'llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_core', 'llvm_support']

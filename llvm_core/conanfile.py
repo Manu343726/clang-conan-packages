@@ -8,5 +8,4 @@ class LLVMCore(common.LLVMModulePackage):
     name = 'llvm_core'
     llvm_component = 'llvm'
     llvm_module = 'Core'
-    llvm_requires = ['llvm_binary_format']
-    include_dirs = [os.path.join('llvm', 'IR')]
+    llvm_requires = ['llvm_headers', 'llvm_binary_format']

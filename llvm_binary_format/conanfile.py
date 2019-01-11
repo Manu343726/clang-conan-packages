@@ -7,4 +7,4 @@ class LLVMBinaryFormat(common.LLVMModulePackage):
     name = 'llvm_binary_format'
     llvm_component = 'llvm'
     llvm_module = 'BinaryFormat'
-    llvm_requires = ['llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_support']

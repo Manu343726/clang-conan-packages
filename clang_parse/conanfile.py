@@ -7,4 +7,4 @@ class ClangParse(common.LLVMModulePackage):
     name = 'clang_parse'
     llvm_component = 'clang'
     llvm_module = 'Parse'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_lex', 'clang_sema', 'llvm_mc', 'llvm_mc_parser', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_lex', 'clang_sema', 'llvm_mc', 'llvm_mc_parser', 'llvm_support']

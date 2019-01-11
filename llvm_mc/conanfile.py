@@ -8,4 +8,4 @@ class LLVMMC(common.LLVMModulePackage):
     name = 'llvm_mc'
     llvm_component = 'llvm'
     llvm_module = 'MC'
-    llvm_requires = ['llvm_support']
+    llvm_requires = ['llvm_headers', 'llvm_support']

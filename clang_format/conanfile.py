@@ -7,4 +7,4 @@ class ClangFormat(common.LLVMModulePackage):
     name = 'clang_format'
     llvm_component = 'clang'
     llvm_module = 'Format'
-    llvm_requires = ['clang_basic', 'clang_lex', 'clang_tooling_core', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_basic', 'clang_lex', 'clang_tooling_core', 'llvm_support']

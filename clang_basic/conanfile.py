@@ -8,4 +8,4 @@ class ClangBasic(common.LLVMModulePackage):
     name = 'clang_basic'
     llvm_component = 'clang'
     llvm_module = 'Basic'
-    llvm_requires = ['llvm_core', 'llvm_mc']
+    llvm_requires = ['clang_headers', 'llvm_core', 'llvm_mc']

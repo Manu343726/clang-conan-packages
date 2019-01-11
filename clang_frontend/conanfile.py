@@ -7,4 +7,4 @@ class ClangFrontend(common.LLVMModulePackage):
     name = 'clang_frontend'
     llvm_component = 'clang'
     llvm_module = 'Frontend'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_driver', 'clang_edit', 'clang_lex', 'clang_parse', 'clang_sema', 'clang_serialization', 'llvm_bit_reader', 'llvm_option', 'llvm_profile_data', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_driver', 'clang_edit', 'clang_lex', 'clang_parse', 'clang_sema', 'clang_serialization', 'llvm_bit_reader', 'llvm_option', 'llvm_profile_data', 'llvm_support']

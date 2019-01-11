@@ -8,5 +8,4 @@ class LLVMGlobalISel(common.LLVMModulePackage):
     name = 'llvm_global_isel'
     llvm_component = 'llvm'
     llvm_module = 'GlobalISel'
-    llvm_requires = ['llvm_analysis', 'llvm_codegen', 'llvm_core', 'llvm_mc', 'llvm_support', 'llvm_target']
-    include_dirs = [os.path.join('llvm', 'CodeGen', 'GlobalISel')]
+    llvm_requires = ['llvm_headers', 'llvm_analysis', 'llvm_codegen', 'llvm_core', 'llvm_mc', 'llvm_support', 'llvm_target']

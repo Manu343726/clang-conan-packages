@@ -8,5 +8,4 @@ class ClangStaticAnalyzerCheckers(common.LLVMModulePackage):
     name = 'clang_static_analyzer_checkers'
     llvm_component = 'clang'
     llvm_module = 'StaticAnalyzerCheckers'
-    llvm_requires = ['clang_ast', 'clang_ast_matchers', 'clang_analysis', 'clang_basic', 'clang_lex', 'clang_static_analyzer_core', 'llvm_support']
-    include_dirs = [os.path.join('clang', 'StaticAnalyzer', 'Checkers')]
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_ast_matchers', 'clang_analysis', 'clang_basic', 'clang_lex', 'clang_static_analyzer_core', 'llvm_support']

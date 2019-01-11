@@ -7,4 +7,4 @@ class ClangIndex(common.LLVMModulePackage):
     name = 'clang_index'
     llvm_component = 'clang'
     llvm_module = 'Index'
-    llvm_requires = ['clang_ast', 'clang_basic', 'clang_format', 'clang_frontend', 'clang_rewrite', 'clang_serialization', 'clang_tooling_core', 'llvm_core', 'llvm_support']
+    llvm_requires = ['clang_headers', 'clang_ast', 'clang_basic', 'clang_format', 'clang_frontend', 'clang_rewrite', 'clang_serialization', 'clang_tooling_core', 'llvm_core', 'llvm_support']

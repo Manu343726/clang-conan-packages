@@ -7,4 +7,4 @@ class LLVMX86Desc(common.LLVMModulePackage):
     name = 'llvm_x86_desc'
     llvm_component = 'llvm'
     llvm_module = 'X86Desc'
-    llvm_requires = ['llvm_mc', 'llvm_mc_disassembler', 'llvm_support', 'llvm_x86_asm_printer', 'llvm_x86_info']
+    llvm_requires = ['llvm_headers', 'llvm_mc', 'llvm_mc_disassembler', 'llvm_support', 'llvm_x86_asm_printer', 'llvm_x86_info']

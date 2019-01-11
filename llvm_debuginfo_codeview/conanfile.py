@@ -8,5 +8,4 @@ class LLVMDebugInfoCodeView(common.LLVMModulePackage):
     name = 'llvm_debuginfo_codeview'
     llvm_component = 'llvm'
     llvm_module = 'DebugInfoCodeView'
-    llvm_requires = ['llvm_support']
-    include_dirs = [os.path.join('llvm', 'DebugInfo', 'CodeView')]
+    llvm_requires = ['llvm_headers', 'llvm_support']
