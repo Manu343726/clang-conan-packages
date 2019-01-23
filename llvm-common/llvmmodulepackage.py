@@ -25,6 +25,10 @@ class LLVMModulePackage(LLVMPackage):
         self.options[self.llvm_component].shared = self._build_shared
         self.options[self.llvm_component].sources_repo = self.options.sources_repo
 
+    def copy_from_component(self, pattern, src='', dst='', keep_path=True):
+        root = self.deps_cpp_info[self.llvm_component].rootpath
+        self.copy(pattern, src=os.path.join(root, src), dst=dst, keep_path=keep_path)
+
     def package(self):
         if not self._header_only:
             component_lib_dir = os.path.join(self.deps_cpp_info[self.llvm_component].rootpath, 'lib')
