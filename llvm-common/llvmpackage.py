@@ -40,10 +40,6 @@ class LLVMPackage(ConanFile):
     def configure(self):
         del self.settings.compiler.libcxx
 
-    def config_options(self):
-        if self.settings.os == "Windows":
-            del self.options.shared
-
     def _llvm_dependency_package(self, component):
         return '{}/{}@{}/{}'.format(component, self.version, self.user, self.channel)
 
