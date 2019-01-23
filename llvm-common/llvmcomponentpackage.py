@@ -77,7 +77,7 @@ message(STATUS "Conan setup done. CMAKE_PROGRAM_PATH: ${{CMAKE_PROGRAM_PATH}}")
         self.output.info('Building LLVM package \'{}\' as shared libs: {}'.format(self.name, self._build_shared))
 
         cmake_options['CMAKE_INSTALL_PREFIX'] = self._install_dir
-        cmake_options['CMAKE_VERBOSE_MAKEFILE'] = True
+        cmake_options['CMAKE_VERBOSE_MAKEFILE'] = False
         cmake_options['BUILD_SHARED_LIBS'] = self._build_shared
         cmake_options['LLVM_TARGETS_TO_BUILD'] = 'X86'
 
