@@ -78,4 +78,11 @@ remote:
   password: manu343726_bintray_key
 
 compilers:
+  - gcc5
+  - gcc6
+  - gcc7
   - gcc8
+  - clang40
+  - clang50
+  - clang60
+  - clang7
