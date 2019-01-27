@@ -11,7 +11,7 @@ before_script:
   error && exit 1; fi
 - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
 build_clang_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -25,7 +25,7 @@ build_clang_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -39,7 +39,7 @@ build_clang_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_analysis_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -63,7 +63,7 @@ build_clang_analysis_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_analysis_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -87,7 +87,7 @@ build_clang_analysis_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_arc_migrate_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -116,7 +116,7 @@ build_clang_arc_migrate_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_arc_migrate_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -145,7 +145,7 @@ build_clang_arc_migrate_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_ast_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -169,7 +169,7 @@ build_clang_ast_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_ast_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -193,7 +193,7 @@ build_clang_ast_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_ast_matchers_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -218,7 +218,7 @@ build_clang_ast_matchers_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_ast_matchers_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -243,7 +243,7 @@ build_clang_ast_matchers_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_basic_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -266,7 +266,7 @@ build_clang_basic_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_basic_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -289,7 +289,7 @@ build_clang_basic_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_driver_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -315,7 +315,7 @@ build_clang_driver_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_driver_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -341,7 +341,7 @@ build_clang_driver_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_edit_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -365,7 +365,7 @@ build_clang_edit_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_edit_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -389,7 +389,7 @@ build_clang_edit_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_format_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -417,7 +417,7 @@ build_clang_format_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_format_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -445,7 +445,7 @@ build_clang_format_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_frontend_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -473,7 +473,7 @@ build_clang_frontend_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_frontend_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -501,7 +501,7 @@ build_clang_frontend_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_index_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -530,7 +530,7 @@ build_clang_index_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_index_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -559,7 +559,7 @@ build_clang_index_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_lex_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -582,7 +582,7 @@ build_clang_lex_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_lex_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -605,7 +605,7 @@ build_clang_lex_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_parse_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -631,7 +631,7 @@ build_clang_parse_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_parse_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -657,7 +657,7 @@ build_clang_parse_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_rewrite_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -682,7 +682,7 @@ build_clang_rewrite_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_rewrite_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -707,7 +707,7 @@ build_clang_rewrite_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_sema_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -732,7 +732,7 @@ build_clang_sema_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_sema_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -757,7 +757,7 @@ build_clang_sema_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_serialization_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -784,7 +784,7 @@ build_clang_serialization_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_serialization_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -811,7 +811,7 @@ build_clang_serialization_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_static_analyzer_checkers_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -840,7 +840,7 @@ build_clang_static_analyzer_checkers_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_static_analyzer_checkers_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -869,7 +869,7 @@ build_clang_static_analyzer_checkers_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_static_analyzer_core_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -897,7 +897,7 @@ build_clang_static_analyzer_core_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_static_analyzer_core_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -924,7 +924,7 @@ build_clang_static_analyzer_core_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_tooling_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -954,7 +954,7 @@ build_clang_tooling_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_tooling_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -984,7 +984,7 @@ build_clang_tooling_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_clang_tooling_core_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1012,7 +1012,7 @@ build_clang_tooling_core_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_clang_tooling_core_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1040,7 +1040,7 @@ build_clang_tooling_core_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_compiler-rt_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1053,7 +1053,7 @@ build_compiler-rt_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_compiler-rt_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1066,7 +1066,7 @@ build_compiler-rt_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_libclang_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1096,7 +1096,7 @@ build_libclang_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_libclang_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1126,7 +1126,7 @@ build_libclang_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1139,7 +1139,7 @@ build_llvm_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1152,7 +1152,7 @@ build_llvm_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_analysis_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1169,7 +1169,7 @@ build_llvm_analysis_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_analysis_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1186,7 +1186,7 @@ build_llvm_analysis_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_asm_printer_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1207,7 +1207,7 @@ build_llvm_asm_printer_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_asm_printer_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1228,7 +1228,7 @@ build_llvm_asm_printer_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_binary_format_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1243,7 +1243,7 @@ build_llvm_binary_format_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_binary_format_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1258,7 +1258,7 @@ build_llvm_binary_format_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_bit_reader_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1274,7 +1274,7 @@ build_llvm_bit_reader_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_bit_reader_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1290,7 +1290,7 @@ build_llvm_bit_reader_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_bit_writer_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1308,7 +1308,7 @@ build_llvm_bit_writer_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_bit_writer_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1326,7 +1326,7 @@ build_llvm_bit_writer_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_codegen_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1346,7 +1346,7 @@ build_llvm_codegen_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_codegen_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1366,7 +1366,7 @@ build_llvm_codegen_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_core_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1381,7 +1381,7 @@ build_llvm_core_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_core_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1396,7 +1396,7 @@ build_llvm_core_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_debuginfo_codeview_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1416,7 +1416,7 @@ build_llvm_debuginfo_codeview_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_debuginfo_codeview_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1436,7 +1436,7 @@ build_llvm_debuginfo_codeview_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_global_isel_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1458,7 +1458,7 @@ build_llvm_global_isel_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_global_isel_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1480,7 +1480,7 @@ build_llvm_global_isel_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_instcombine_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1498,7 +1498,7 @@ build_llvm_instcombine_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_instcombine_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1516,7 +1516,7 @@ build_llvm_instcombine_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_mc_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1531,7 +1531,7 @@ build_llvm_mc_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_mc_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1546,7 +1546,7 @@ build_llvm_mc_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_mc_disassembler_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1566,7 +1566,7 @@ build_llvm_mc_disassembler_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_mc_disassembler_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1586,7 +1586,7 @@ build_llvm_mc_disassembler_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_mc_parser_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1602,7 +1602,7 @@ build_llvm_mc_parser_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_mc_parser_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1618,7 +1618,7 @@ build_llvm_mc_parser_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_object_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1634,7 +1634,7 @@ build_llvm_object_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_object_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1650,7 +1650,7 @@ build_llvm_object_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_option_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1668,7 +1668,7 @@ build_llvm_option_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_option_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1686,7 +1686,7 @@ build_llvm_option_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_profile_data_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1703,7 +1703,7 @@ build_llvm_profile_data_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_profile_data_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1720,7 +1720,7 @@ build_llvm_profile_data_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_scalar_opts_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1739,7 +1739,7 @@ build_llvm_scalar_opts_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_scalar_opts_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1758,7 +1758,7 @@ build_llvm_scalar_opts_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_selection_dag_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1780,7 +1780,7 @@ build_llvm_selection_dag_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_selection_dag_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1802,7 +1802,7 @@ build_llvm_selection_dag_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_support_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1816,7 +1816,7 @@ build_llvm_support_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_support_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1830,7 +1830,7 @@ build_llvm_support_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_target_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1849,7 +1849,7 @@ build_llvm_target_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_target_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1868,7 +1868,7 @@ build_llvm_target_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_transform_utils_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1885,7 +1885,7 @@ build_llvm_transform_utils_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_transform_utils_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1902,7 +1902,7 @@ build_llvm_transform_utils_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_asm_parser_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1925,7 +1925,7 @@ build_llvm_x86_asm_parser_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_asm_parser_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1948,7 +1948,7 @@ build_llvm_x86_asm_parser_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_asm_printer_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -1969,7 +1969,7 @@ build_llvm_x86_asm_printer_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_asm_printer_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -1990,7 +1990,7 @@ build_llvm_x86_asm_printer_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_codegen_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -2013,7 +2013,7 @@ build_llvm_x86_codegen_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_codegen_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -2036,7 +2036,7 @@ build_llvm_x86_codegen_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_desc_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -2058,7 +2058,7 @@ build_llvm_x86_desc_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_desc_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -2080,7 +2080,7 @@ build_llvm_x86_desc_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_info_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -2101,7 +2101,7 @@ build_llvm_x86_info_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_info_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
@@ -2122,7 +2122,7 @@ build_llvm_x86_info_6.0.1_gcc8_build_type=Release+shared=True:
   - linux
   - docker
 build_llvm_x86_utils_6.0.1_gcc8_build_type=Release+shared=False:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=False
@@ -2141,7 +2141,7 @@ build_llvm_x86_utils_6.0.1_gcc8_build_type=Release+shared=False:
   - linux
   - docker
 build_llvm_x86_utils_6.0.1_gcc8_build_type=Release+shared=True:
-  image: lasote/conangcc8
+  image: conanio/gcc8
   script:
   - conan profile update settings.build_type=Release default
   - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default -o llvm:shared=True
