@@ -82,7 +82,5 @@ compilers:
   - gcc6
   - gcc7
   - gcc8
-  - clang40
-  - clang50
   - clang60
   - clang7
