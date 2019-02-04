@@ -4,7 +4,15 @@ packages:
   - compiler-rt
   - clang
 
+  # Headers
+  - llvm_headers
+  - clang_headers
+
+  # tool executables
+  - clang_executables
+
   # LLVM component meta-packages
+  - llvm_demangle
   - llvm_support
   - llvm_binary_format
   - llvm_core
@@ -23,6 +31,7 @@ packages:
   - llvm_x86_utils
   - llvm_codegen
   - llvm_debuginfo_codeview
+  - llvm_debuginfo_msf
   - llvm_mc_disassembler
   - llvm_x86_asm_printer
   - llvm_x86_info
