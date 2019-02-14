@@ -10,6 +10,33 @@ before_script:
   not empty, ok; else echo remote password variable "manu343726_bintray_key" empty,
   error && exit 1; fi
 - conan user Manu343726 -p $manu343726_bintray_key -r Manu343726
+
+build_llvm_headers_6.0.1:
+  image: conanio/clang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=6.0.1 conan create llvm_headers llvm_headers/6.0.1@Manu343726/testing
+    --profile=default --build=missing --build=llvm_headers
+  - conan remove -b -s -f "*"
+  - conan upload llvm_headers/6.0.1@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
+  stage: llvm_headers
+  tags:
+  - linux
+  - docker
+build_clang_headers_6.0.1:
+  image: conanio/clang60
+  script:
+  - conan profile update settings.build_type=Release default
+  - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default clang_headers clang_headers/6.0.1@Manu343726/testing
+    --build=missing --build=clang_headers
+  - conan remove -b -s -f "*"
+  - conan upload clang_headers/6.0.1@Manu343726/testing -r Manu343726 --all --force
+    --retry 3
+  stage: clang_headers
+  tags:
+  - linux
+  - docker
 build_clang_6.0.1_clang60_build_type=Release+shared=False:
   image: conanio/clang60
   script:
@@ -3343,19 +3370,6 @@ build_clang_frontend_6.0.1_gcc8_build_type=Release+shared=True:
   - conan upload clang_frontend/6.0.1@Manu343726/testing -r Manu343726 --all --force
     --retry 3
   stage: clang_frontend
-  tags:
-  - linux
-  - docker
-build_clang_headers_6.0.1:
-  image: conanio/clang60
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.1 conan create --profile=default clang_headers clang_headers/6.0.1@Manu343726/testing
-    --build=missing --build=clang_headers
-  - conan remove -b -s -f "*"
-  - conan upload clang_headers/6.0.1@Manu343726/testing -r Manu343726 --all --force
-    --retry 3
-  stage: clang_headers
   tags:
   - linux
   - docker
@@ -10058,19 +10072,6 @@ build_llvm_global_isel_6.0.1_gcc8_build_type=Release+shared=True:
   - conan upload llvm_global_isel/6.0.1@Manu343726/testing -r Manu343726 --all --force
     --retry 3
   stage: llvm_global_isel
-  tags:
-  - linux
-  - docker
-build_llvm_headers_6.0.1:
-  image: conanio/clang60
-  script:
-  - conan profile update settings.build_type=Release default
-  - CONAN_VERSION_OVERRIDE=6.0.1 conan create clang_headers clang_headers/6.0.1@Manu343726/testing
-    --profile=default --build=missing --build=llvm_headers
-  - conan remove -b -s -f "*"
-  - conan upload llvm_headers/6.0.1@Manu343726/testing -r Manu343726 --all --force
-    --retry 3
-  stage: llvm_headers
   tags:
   - linux
   - docker
